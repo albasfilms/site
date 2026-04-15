@@ -66,6 +66,9 @@ html{background:#ECEAE8}body{background:#ECEAE8;color:var(--black);font-family:v
 .servicos-grid.reveal.visible .servico-card:nth-child(4){transition-delay:0.15s}
 .servicos-grid.reveal.visible .servico-card:nth-child(5){transition-delay:0.19s}
 .servicos-grid.reveal.visible .servico-card:nth-child(6){transition-delay:0.23s}
+.servicos-grid.reveal.visible .servico-card:nth-child(7){transition-delay:0.27s}
+.servicos-grid.reveal.visible .servico-card:nth-child(8){transition-delay:0.31s}
+.servicos-grid.reveal.visible .servico-card:nth-child(9){transition-delay:0.35s}
 .portfolio-grid.reveal.visible .portfolio-item:nth-child(1){transition-delay:0.04s}
 .portfolio-grid.reveal.visible .portfolio-item:nth-child(2){transition-delay:0.1s}
 .portfolio-grid.reveal.visible .portfolio-item:nth-child(3){transition-delay:0.16s}
@@ -311,17 +314,44 @@ nav.scrolled{
   background:var(--white);
   border:1px solid var(--light-line);
   border-radius:10px;
-  padding:32px 28px;
+  padding:22px 20px;
   transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
   cursor:default;
+  min-height:0;
 }
 .servico-card:hover{
   border-color:#bbb;
   transform:translateY(-3px);
   box-shadow:0 8px 32px rgba(0,0,0,0.06);
 }
-.servico-name{font-family:var(--serif);font-size:21px;font-weight:400;color:var(--black);margin-bottom:10px;line-height:1.2}
-.servico-desc{font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--mid);font-weight:300}
+.servico-name{font-family:var(--serif);font-size:clamp(17px,2.4vw,21px);font-weight:400;color:var(--black);margin:0;line-height:1.25}
+.servico-card--logo{display:none}
+@media(min-width:1025px){
+  .servico-card--logo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:clamp(12px,2vw,20px) 10px;
+    background:transparent;
+    border:none;
+    box-shadow:none;
+    cursor:default;
+  }
+  .servico-card--logo:hover{
+    transform:none;
+    box-shadow:none;
+    border-color:transparent;
+  }
+  .servico-card--logo .servico-logo-img{
+    display:block;
+    width:auto;
+    height:clamp(56px,7vw,96px);
+    max-width:min(260px,92%);
+    object-fit:contain;
+    object-position:center;
+    filter:invert(1);
+  }
+}
 
 /* ═══════════════════════════════
    PORTFOLIO
@@ -344,31 +374,117 @@ a.portfolio-item{color:inherit;text-decoration:none;-webkit-tap-highlight-color:
 /* ═══════════════════════════════
    STORYMAKER
    ═══════════════════════════════ */
-#storymaker{padding:68px 72px;background:var(--white)}
+#storymaker{padding:68px 72px;background:var(--white);min-width:0}
 .storymaker-grid{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,360px);
-  gap:clamp(80px,10vw,140px);
-  align-items:center;
   max-width:1220px;
   margin-inline:auto;
+  min-width:0;
+}
+/* Linha 1: “Por que contratar” + “Conheça cada serviço” centrados.
+   Linha 2: deck — só o título do serviço + telemóvel, alinhados ao centro na vertical; lista numa faixa full-width por baixo (JS).
+   Linha 3: navegação do carrossel. */
+.storymaker-mid-wrap{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:auto auto auto;
+  row-gap:clamp(16px,2.2vw,28px);
+  align-items:start;
+  min-width:0;
+}
+.storymaker-titles{
+  grid-column:1;
+  grid-row:1;
+  min-width:0;
+  max-width:100%;
+  text-align:center;
+}
+.sm-slide-deck{
+  grid-column:1;
+  grid-row:2;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(120px,280px);
+  grid-template-rows:auto auto;
+  column-gap:clamp(14px,3.5vw,48px);
+  row-gap:clamp(14px,2vw,22px);
+  align-items:center;
+  min-width:0;
+  padding:clamp(18px,2.2vw,32px);
+  background:var(--bg-light);
+  border-radius:12px;
+}
+.sm-slide-deck .sm-carousel-wrap{
+  grid-column:1;
+  grid-row:1;
+  min-width:0;
+  max-width:100%;
+  width:100%;
+  align-self:center;
+}
+.sm-slide-deck .storymaker-col-phone{
+  grid-column:2;
+  grid-row:1;
+  align-self:center;
+  justify-self:center;
+  min-width:0;
+  max-width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.sm-slide-deck .storymaker-phone{
+  width:min(220px,30vw);
+  max-width:100%;
+  height:auto;
+  aspect-ratio:9/19;
+  margin:0 auto;
+}
+.sm-slide .sm-topics{display:none}
+.sm-topics-strip{
+  grid-column:1 / -1;
+  grid-row:2;
+  min-width:0;
+  background:var(--white);
+  border:1px solid var(--light-line);
+  border-radius:10px;
+  padding:clamp(16px,2vw,24px) clamp(18px,2.2vw,28px);
+}
+.sm-topics-strip .sm-topics{
+  display:block;
+  margin:0;
+  padding:0;
+  border-top:none;
+  padding-top:0;
+}
+.sm-topics-strip .sm-topics li:last-child{margin-bottom:0}
+.storymaker-mid-wrap .sm-carousel-nav{
+  grid-column:1;
+  grid-row:3;
+  margin-top:0;
+  padding-top:20px;
 }
 .storymaker-pretitle{font-family:var(--sans);font-size:9px;font-weight:400;letter-spacing:0.4em;text-transform:uppercase;color:var(--mid);margin-bottom:20px;display:block}
-.storymaker-title{font-family:var(--serif);font-size:clamp(34px,3.8vw,54px);font-weight:300;line-height:1.1;color:var(--black);margin-bottom:36px}
-.sm-carousel-wrap{position:relative;min-width:0}
-.sm-carousel{overflow-x:hidden;overflow-y:visible;border-radius:2px}
-.sm-track{display:flex;transition:transform 0.5s cubic-bezier(.22,1,.36,1);will-change:transform}
-.sm-slide{flex-shrink:0;box-sizing:border-box}
-.sm-slide-inner{padding-bottom:8px}
-.sm-slide-title{font-family:var(--serif);font-size:clamp(26px,3.2vw,34px);font-weight:400;color:var(--black);line-height:1.15;margin-bottom:14px}
-.sm-slide-desc{font-family:var(--sans);font-size:15px;line-height:1.75;color:var(--graphite);font-weight:300;max-width:42ch;margin-bottom:0}
+.storymaker-title{font-family:var(--serif);font-size:clamp(34px,3.8vw,54px);font-weight:300;line-height:1.1;color:var(--black);margin-bottom:0;text-wrap:balance}
+.sm-carousel-wrap{position:relative;min-width:0;width:100%}
+.sm-carousel{overflow-x:hidden;overflow-y:visible;border-radius:2px;width:100%;min-width:0;max-width:100%}
+.sm-track{display:flex;transition:transform 0.5s cubic-bezier(.22,1,.36,1);will-change:transform;min-width:0}
+.sm-slide{flex-shrink:0;flex-grow:0;box-sizing:border-box;min-width:0}
+.sm-slide-inner{display:flex;flex-direction:column;align-items:center;padding-bottom:4px;min-width:0;width:100%}
+.sm-slide-intro{
+  min-width:0;width:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+}
+.sm-slide-title{
+  font-family:var(--serif);font-size:clamp(34px,5.8vw,56px);font-weight:400;color:var(--black);
+  line-height:1.12;margin:0;text-align:center;text-wrap:balance;max-width:100%
+}
 .sm-topics{
-  list-style:none;margin:22px 0 0;padding:0;max-width:min(46ch,100%);
+  list-style:none;margin:22px 0 0;padding:0;max-width:100%;
   border-top:1px solid var(--light-line);padding-top:20px;
 }
 .sm-topics li{
   position:relative;padding-left:1.15em;font-family:var(--sans);font-size:13px;line-height:1.65;
-  color:var(--mid);font-weight:300;margin-bottom:11px;
+  color:var(--mid);font-weight:300;margin-bottom:11px;overflow-wrap:break-word;
 }
 .sm-topics li:last-child{margin-bottom:0}
 .sm-topics li::before{
@@ -407,6 +523,7 @@ a.portfolio-item{color:inherit;text-decoration:none;-webkit-tap-highlight-color:
 .phone-screen.phone-t-story{background:linear-gradient(165deg,#1a1816,#2a2520)}
 .phone-screen.phone-t-film{background:linear-gradient(165deg,#141820,#1e2830)}
 .phone-screen.phone-t-cam{background:linear-gradient(165deg,#181a1c,#252830)}
+.phone-screen.phone-t-aerial{background:linear-gradient(165deg,#141c18,#1e2824)}
 .phone-screen.phone-t-photo{background:linear-gradient(165deg,#1c1a18,#302a28)}
 .phone-screen.phone-t-social{background:linear-gradient(165deg,#18161e,#221c2e)}
 .phone-screen.phone-t-brand{background:linear-gradient(165deg,#161a18,#1e2420)}
@@ -685,7 +802,16 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
   #servicos{padding:48px 32px}
   .servicos-grid{grid-template-columns:1fr 1fr}
   #portfolio{padding:48px 32px}.portfolio-grid{grid-template-columns:1fr 1fr}.portfolio-item:first-child{grid-column:span 2;grid-row:auto;min-height:250px}
-  #storymaker{padding:48px 32px}.storymaker-grid{grid-template-columns:1fr;gap:32px}.storymaker-col-phone{order:2}.storymaker-col-carousel{order:1}
+  #storymaker{padding:48px 32px}
+  .sm-slide-deck{
+    grid-template-columns:minmax(0,1fr) auto;
+    column-gap:clamp(10px,2.5vw,20px);
+  }
+  .storymaker-phone{width:min(200px,38vw)}
+  .sm-slide-deck .storymaker-phone{
+    width:min(200px,34vw);
+    max-width:100%;
+  }
   #diferenciais{padding:48px 32px}.diferenciais-grid{grid-template-columns:1fr 1fr;gap:20px}
   #processo{padding:48px 32px}.processo-steps{grid-template-columns:repeat(3,1fr);row-gap:40px}.processo-steps::before{display:none}
   #depoimentos{padding:48px 32px}.dep-grid{grid-template-columns:1fr}
@@ -702,15 +828,50 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
   #sobre{padding:36px 20px}
   #servicos{padding:36px 20px}
   .servicos-intro{margin-bottom:28px}
-  .servicos-grid{grid-template-columns:1fr}
+  .servicos-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .servico-card{padding:16px 12px}
+  .servico-name{font-size:clamp(15px,3.6vw,18px);line-height:1.2}
   #portfolio{padding:36px 20px}.portfolio-grid{grid-template-columns:1fr}.portfolio-item:first-child{grid-column:auto;min-height:200px}
   .portfolio-title{margin-bottom:32px}
   #portfolio .portfolio-grid .portfolio-item:nth-child(4){grid-column:auto}
   #storymaker{padding:36px 20px}
-  #storymaker .storymaker-grid{gap:24px}
-  .storymaker-pretitle{margin-bottom:14px}
-  .storymaker-title{margin-bottom:22px;font-size:clamp(28px,8vw,40px)}
-  .sm-carousel-nav{margin-top:18px;padding-top:16px}
+  #storymaker .sm-slide-deck{
+    column-gap:10px;
+  }
+  .storymaker-pretitle{margin-bottom:10px}
+  .storymaker-title{font-size:clamp(26px,7.2vw,36px)}
+  .storymaker-col-phone{width:auto}
+  .storymaker-phone{width:min(168px,36vw)}
+  .sm-slide-deck{
+    grid-template-columns:minmax(0,1fr) minmax(88px,min(120px,32vw));
+    grid-template-rows:auto auto;
+    column-gap:clamp(12px,4vw,20px);
+    row-gap:clamp(12px,3vw,18px);
+    align-items:center;
+  }
+  .sm-slide-deck .sm-carousel-wrap{
+    grid-column:1;
+    grid-row:1;
+    align-self:center;
+  }
+  .sm-slide-deck .storymaker-col-phone{
+    grid-column:2;
+    grid-row:1;
+    width:auto;
+    align-self:center;
+    justify-self:end;
+    align-items:center;
+  }
+  .sm-slide-deck .storymaker-phone{
+    height:auto;
+    max-height:none;
+    width:min(112px,30vw);
+    max-width:100%;
+    aspect-ratio:9/19;
+    margin:0;
+  }
+  .sm-slide-deck .sm-topics-strip{grid-column:1 / -1;grid-row:2}
+  #storymaker .storymaker-mid-wrap .sm-carousel-nav{padding-top:14px}
   #diferenciais{padding:36px 20px}
   .diferenciais-title{margin-bottom:36px}
   .diferenciais-scroll{
@@ -914,27 +1075,30 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
   <div class="servicos-grid reveal">
     <div class="servico-card">
       <h3 class="servico-name">Storymaker</h3>
-      <p class="servico-desc">Bastidores e momentos espontâneos, pensados para acompanhar e encantar em tempo quase real.</p>
     </div>
     <div class="servico-card">
       <h3 class="servico-name">Filmmaker</h3>
-      <p class="servico-desc">Direção criativa e narrativa visual contínua, registrando os principais momentos de uma forma mais que especial</p>
     </div>
     <div class="servico-card">
-      <h3 class="servico-name">Captação mobile / aérea</h3>
-      <p class="servico-desc">Estética cinematográfica e perspectivas aéreas, registrando desde os detalhes até a amplitude.</p>
+      <h3 class="servico-name">Captação mobile</h3>
+    </div>
+    <div class="servico-card">
+      <h3 class="servico-name">Captação aérea</h3>
     </div>
     <div class="servico-card">
       <h3 class="servico-name">Ensaios fotográficos</h3>
-      <p class="servico-desc">Retratos e narrativas estáticas captadas com sensibilidade e profissionalismo.</p>
     </div>
     <div class="servico-card">
       <h3 class="servico-name">Social media / conteúdo</h3>
-      <p class="servico-desc">Posicionamento estratégico para redes, mantendo consistência e focando em autoridade de marca/perfil.</p>
     </div>
     <div class="servico-card">
-      <h3 class="servico-name">Identidade visual + Sites e E-commerces</h3>
-      <p class="servico-desc">Direção de arte, posicionamento e presença digital alinhados à sua marca.</p>
+      <h3 class="servico-name">Identidade visual</h3>
+    </div>
+    <div class="servico-card servico-card--logo">
+      <img class="servico-logo-img" src="assets/logo-albas-films.png" alt="Albas Films" width="800" height="450" decoding="async" />
+    </div>
+    <div class="servico-card">
+      <h3 class="servico-name">Sites / E-commerce</h3>
     </div>
   </div>
 </section>
@@ -966,16 +1130,20 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
 <!-- ═══ STORYMAKER — carrossel de serviços + preview no telemóvel ═══ -->
 <section id="storymaker">
   <div class="storymaker-grid">
-    <div class="storymaker-col-carousel">
+    <div class="storymaker-mid-wrap">
+    <div class="storymaker-titles">
       <span class="storymaker-pretitle reveal">Por que contratar</span>
-      <h2 class="storymaker-title reveal reveal-delay-1">Conheça cada<br><em style="font-style:italic">serviço</em></h2>
+      <h2 class="storymaker-title reveal reveal-delay-1">Conheça cada <em style="font-style:italic">serviço</em></h2>
+    </div>
+    <div class="sm-slide-deck">
       <div class="sm-carousel-wrap reveal reveal-delay-1">
         <div class="sm-carousel" id="smCarousel" role="region" aria-roledescription="carrossel" aria-label="Serviços da Albas Films">
           <div class="sm-track" id="smTrack">
             <article class="sm-slide" data-phone-class="phone-t-story" data-phone-icon="🎬" data-phone-line1="Preview em tempo real" data-phone-line2="Stories e bastidores" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
               <div class="sm-slide-inner">
+                <div class="sm-slide-intro">
                 <h3 class="sm-slide-title">Storymaker</h3>
-                <p class="sm-slide-desc">Bastidores e momentos espontâneos, pensados para acompanhar e encantar em tempo quase real.</p>
+                </div>
                 <ul class="sm-topics">
                   <li>Cobertura discreta: presença leve, sem roubar o protagonismo do momento.</li>
                   <li>Ritmo de redes: entregas pensadas para stories e cortes “quase ao vivo”.</li>
@@ -986,8 +1154,9 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
             </article>
             <article class="sm-slide" data-phone-class="phone-t-film" data-phone-icon="🎥" data-phone-line1="Trecho do filme" data-phone-line2="Narrativa contínua" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
               <div class="sm-slide-inner">
+                <div class="sm-slide-intro">
                 <h3 class="sm-slide-title">Filmmaker</h3>
-                <p class="sm-slide-desc">Direção criativa e narrativa visual contínua, registrando os principais momentos de uma forma mais que especial</p>
+                </div>
                 <ul class="sm-topics">
                   <li>Narrativa de longo fôlego: arco emocional do começo ao fim do projeto.</li>
                   <li>Direção no set: decisões de câmera e ritmo alinhadas ao filme que você imagina.</li>
@@ -996,22 +1165,37 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
                 </ul>
               </div>
             </article>
-            <article class="sm-slide" data-phone-class="phone-t-cam" data-phone-icon="✈️" data-phone-line1="Do detalhe ao plano aberto" data-phone-line2="Mobile e aéreo" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
+            <article class="sm-slide" data-phone-class="phone-t-cam" data-phone-icon="📹" data-phone-line1="Captação em movimento" data-phone-line2="Ritmo cinematográfico" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
               <div class="sm-slide-inner">
-                <h3 class="sm-slide-title">Captação mobile / aérea</h3>
-                <p class="sm-slide-desc">Estética cinematográfica e perspectivas aéreas, registrando desde os detalhes até a amplitude.</p>
+                <div class="sm-slide-intro">
+                <h3 class="sm-slide-title">Captação mobile</h3>
+                </div>
                 <ul class="sm-topics">
-                  <li>Captação em movimento: handheld e estabilizado para fluidez cinematográfica.</li>
-                  <li>Drone quando o espaço e a história pedem amplitude e impacto aéreo.</li>
-                  <li>Do detalhe ao plano aberto: mesma linguagem visual em todos os enquadramentos.</li>
-                  <li>Flexível para interiores, externos e locações desafiadoras.</li>
+                  <li>Operação leve no set: agilidade sem roubar o protagonismo do momento.</li>
+                  <li>Composição e luz pensadas para cada ambiente (natural ou controlada).</li>
+                  <li>Ideal para interiores, corredores, festas e tudo que pede sensação “dentro da ação”.</li>
+                  <li>Mesma linguagem visual da sua marca combinada com a captação aérea, quando os dois entram no projeto.</li>
+                </ul>
+              </div>
+            </article>
+            <article class="sm-slide" data-phone-class="phone-t-aerial" data-phone-icon="✈️" data-phone-line1="Planos amplos e revelação" data-phone-line2="Perspectiva aérea" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
+              <div class="sm-slide-inner">
+                <div class="sm-slide-intro">
+                <h3 class="sm-slide-title">Captação aérea</h3>
+                </div>
+                <ul class="sm-topics">
+                  <li>Voos planejados com foco em segurança, legalidade e narrativa (não só “subir o drone”).</li>
+                  <li>Aberturas, estabelecimento de cenário e transições que elevam o corte.</li>
+                  <li>Exteriores, imóveis, paisagens e eventos ao ar livre — onde o plano aberto conta a história.</li>
+                  <li>Encaixa com captação no chão para um resultado coerente de ponta a ponta.</li>
                 </ul>
               </div>
             </article>
             <article class="sm-slide" data-phone-class="phone-t-photo" data-phone-icon="📷" data-phone-line1="Ensaio em destaque" data-phone-line2="Estética editorial" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
               <div class="sm-slide-inner">
+                <div class="sm-slide-intro">
                 <h3 class="sm-slide-title">Ensaios fotográficos</h3>
-                <p class="sm-slide-desc">Retratos e narrativas estáticas captadas com sensibilidade e profissionalismo.</p>
+                </div>
                 <ul class="sm-topics">
                   <li>Direção de pose leve: naturalidade em vez de poses forçadas.</li>
                   <li>Luz estudada para pele, ambiente e mood do projeto (natural ou controlada).</li>
@@ -1022,8 +1206,9 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
             </article>
             <article class="sm-slide" data-phone-class="phone-t-social" data-phone-icon="📱" data-phone-line1="Conteúdo para redes" data-phone-line2="Autoridade de marca" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
               <div class="sm-slide-inner">
+                <div class="sm-slide-intro">
                 <h3 class="sm-slide-title">Social media / conteúdo</h3>
-                <p class="sm-slide-desc">Posicionamento estratégico para redes, mantendo consistência e focando em autoridade de marca/perfil.</p>
+                </div>
                 <ul class="sm-topics">
                   <li>Pilares e calendário: o que publicar, quando e com qual objetivo.</li>
                   <li>Formato certo para cada rede: reels, feed, carrossel, stories e legenda.</li>
@@ -1034,8 +1219,9 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
             </article>
             <article class="sm-slide" data-phone-class="phone-t-brand" data-phone-icon="✨" data-phone-line1="Identidade em evolução" data-phone-line2="Direção de arte" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
               <div class="sm-slide-inner">
+                <div class="sm-slide-intro">
                 <h3 class="sm-slide-title">Identidade visual</h3>
-                <p class="sm-slide-desc">Direção de arte e posicionamento visual alinhados à sua marca — antes de sites e lojas, a linguagem gráfica.</p>
+                </div>
                 <ul class="sm-topics">
                   <li>Conceito e mood: direção de arte que traduz valores e público.</li>
                   <li>Logo e sistema: versões, área de proteção e aplicações básicas.</li>
@@ -1046,8 +1232,9 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
             </article>
             <article class="sm-slide" data-phone-class="phone-t-web" data-phone-icon="🛒" data-phone-line1="Site e e-commerce" data-phone-line2="Presença digital" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
               <div class="sm-slide-inner">
+                <div class="sm-slide-intro">
                 <h3 class="sm-slide-title">Sites e E-commerces</h3>
-                <p class="sm-slide-desc">Sites, lojas online e jornada digital com a mesma estética e estratégia da sua marca.</p>
+                </div>
                 <ul class="sm-topics">
                   <li>UX e hierarquia: páginas claras, com foco em conversão ou informação.</li>
                   <li>Visual alinhado à identidade: não parece um template genérico.</li>
@@ -1058,24 +1245,26 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
             </article>
           </div>
         </div>
-        <div class="sm-carousel-nav">
-          <span class="sm-counter" aria-live="polite"><span id="smCountCur">1</span> / <span id="smCountTot">7</span></span>
+      </div>
+      <div class="storymaker-col-phone reveal reveal-delay-2" style="position:relative">
+        <div class="storymaker-phone" id="smPhoneShell">
+          <div class="phone-screen phone-t-story" id="smPhoneScreen" aria-live="polite">
+            <div class="phone-notch"></div>
+            <div class="phone-bars" id="smPhoneBars"><div class="phone-bar active"></div><div class="phone-bar active"></div><div class="phone-bar"></div><div class="phone-bar"></div><div class="phone-bar"></div></div>
+            <div class="phone-icon" id="smPhoneIcon">🎬</div>
+            <div class="phone-caption" id="smPhoneCaption"><span id="smPhoneLine1">Preview em tempo real</span><br><span id="smPhoneLine2">Stories e bastidores</span></div>
+            <div class="phone-tag" id="smPhoneTag">Placeholder — substitua por vídeo ou mock real</div>
+          </div>
+        </div>
+      </div>
+      <div class="sm-topics-strip reveal reveal-delay-1" id="smTopicsStrip" aria-live="polite"></div>
+    </div>
+      <div class="sm-carousel-nav">
+          <span class="sm-counter" aria-live="polite"><span id="smCountCur">1</span> / <span id="smCountTot">8</span></span>
           <div class="sm-arrows">
             <button type="button" class="sm-arrow" id="smPrev" aria-label="Serviço anterior">‹</button>
             <button type="button" class="sm-arrow" id="smNext" aria-label="Próximo serviço">›</button>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="storymaker-col-phone reveal reveal-delay-2" style="position:relative">
-      <div class="storymaker-phone" id="smPhoneShell">
-        <div class="phone-screen phone-t-story" id="smPhoneScreen" aria-live="polite">
-          <div class="phone-notch"></div>
-          <div class="phone-bars" id="smPhoneBars"><div class="phone-bar active"></div><div class="phone-bar active"></div><div class="phone-bar"></div><div class="phone-bar"></div><div class="phone-bar"></div></div>
-          <div class="phone-icon" id="smPhoneIcon">🎬</div>
-          <div class="phone-caption" id="smPhoneCaption"><span id="smPhoneLine1">Preview em tempo real</span><br><span id="smPhoneLine2">Stories e bastidores</span></div>
-          <div class="phone-tag" id="smPhoneTag">Placeholder — substitua por vídeo ou mock real</div>
-        </div>
       </div>
     </div>
   </div>
@@ -1302,13 +1491,28 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     var tag = document.getElementById('smPhoneTag');
     var curEl = document.getElementById('smCountCur');
     var totEl = document.getElementById('smCountTot');
+    var topicsStrip = document.getElementById('smTopicsStrip');
     var n = slides.length;
     var idx = 0;
     if (!n) return;
     totEl.textContent = String(n);
 
     function slideW() {
-      return carousel.offsetWidth || 0;
+      var cap = window.innerWidth || document.documentElement.clientWidth || 0;
+      var wrap = carousel.parentElement;
+      var w = 0;
+      if (wrap && wrap.getBoundingClientRect) {
+        w = wrap.getBoundingClientRect().width;
+      }
+      if (!w || w > cap + 2) {
+        w = carousel.getBoundingClientRect().width;
+      }
+      if (!w || w > cap + 2) {
+        w = carousel.clientWidth || carousel.offsetWidth || 0;
+      }
+      if (w > cap && cap > 0) w = cap;
+      if (w < 1 && cap > 0) w = cap;
+      return Math.round(Math.max(0, w));
     }
 
     function phoneTheme(slide) {
@@ -1321,7 +1525,18 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
       if (tag) tag.textContent = slide.getAttribute('data-phone-tag') || '';
     }
 
+    function syncTopics() {
+      if (!topicsStrip) return;
+      var ul = slides[idx] && slides[idx].querySelector('.sm-topics');
+      topicsStrip.innerHTML = '';
+      if (ul) topicsStrip.appendChild(ul.cloneNode(true));
+    }
+
     function layoutSizes() {
+      slides.forEach(function (s) {
+        s.style.width = '';
+      });
+      void carousel.offsetWidth;
       var w = slideW();
       slides.forEach(function (s) {
         s.style.width = w ? w + 'px' : '100%';
@@ -1342,6 +1557,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
       if (prev) prev.disabled = idx === 0;
       if (next) next.disabled = idx === n - 1;
       phoneTheme(slides[idx]);
+      syncTopics();
     }
 
     function applyLayout() {
