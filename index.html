@@ -308,7 +308,8 @@ nav.scrolled{
   gap:20px;
   max-width:1180px;
   margin:0 auto;
-  text-align:left;
+  text-align:center;
+  align-items:stretch;
 }
 .servico-card{
   background:var(--white);
@@ -317,25 +318,34 @@ nav.scrolled{
   padding:22px 20px;
   transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
   cursor:default;
-  min-height:0;
+  min-height:clamp(108px,13vw,138px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
 .servico-card:hover{
   border-color:#bbb;
   transform:translateY(-3px);
   box-shadow:0 8px 32px rgba(0,0,0,0.06);
 }
-.servico-name{font-family:var(--serif);font-size:clamp(17px,2.4vw,21px);font-weight:400;color:var(--black);margin:0;line-height:1.25}
+.servico-name{
+  font-family:var(--serif);font-size:clamp(19px,2.9vw,24px);font-weight:400;color:var(--black);
+  margin:0;line-height:1.22;max-width:100%;text-wrap:balance;
+}
 .servico-card--logo{display:none}
 @media(min-width:1025px){
   .servico-card--logo{
     display:flex;
+    flex-direction:column;
     align-items:center;
     justify-content:center;
-    padding:clamp(12px,2vw,20px) 10px;
+    text-align:center;
     background:transparent;
     border:none;
     box-shadow:none;
-    cursor:default;
+    padding:clamp(4px,1.5vw,12px);
   }
   .servico-card--logo:hover{
     transform:none;
@@ -345,11 +355,10 @@ nav.scrolled{
   .servico-card--logo .servico-logo-img{
     display:block;
     width:auto;
-    height:clamp(56px,7vw,96px);
+    height:clamp(64px,7.5vw,100px);
     max-width:min(260px,92%);
     object-fit:contain;
     object-position:center;
-    filter:invert(1);
   }
 }
 
