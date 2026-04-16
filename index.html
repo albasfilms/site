@@ -537,9 +537,27 @@ a.portfolio-item{color:inherit;text-decoration:none;-webkit-tap-highlight-color:
 .phone-screen.phone-t-social{background:linear-gradient(165deg,#18161e,#221c2e)}
 .phone-screen.phone-t-brand{background:linear-gradient(165deg,#161a18,#1e2420)}
 .phone-screen.phone-t-web{background:linear-gradient(165deg,#12161c,#1a2228)}
+.phone-screen.has-phone-media .phone-icon,
+.phone-screen.has-phone-media .phone-caption,
+.phone-screen.has-phone-media .phone-tag{display:none}
+.phone-media{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  border-radius:22px;
+  overflow:hidden;
+  pointer-events:none;
+}
+.phone-media-gif{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
 .phone-tag{font-family:var(--sans);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:4px}
 .phone-notch{position:absolute;top:5px;left:50%;transform:translateX(-50%);width:68px;height:16px;background:var(--bg-dark);border-radius:0 0 9px 9px;z-index:10}
-.phone-bars{display:flex;gap:5px;padding:16px 12px 0;position:absolute;top:0;left:0;right:0}
+.phone-bars{display:flex;gap:5px;padding:16px 12px 0;position:absolute;top:0;left:0;right:0;z-index:6}
 .phone-bar{height:2px;flex:1;border-radius:2px;background:rgba(255,255,255,0.22)}
 .phone-bar.active{background:rgba(255,255,255,0.82)}
 .phone-icon{font-size:42px;opacity:0.25}
@@ -1257,7 +1275,10 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
       </div>
       <div class="storymaker-col-phone reveal reveal-delay-2" style="position:relative">
         <div class="storymaker-phone" id="smPhoneShell">
-          <div class="phone-screen phone-t-story" id="smPhoneScreen" aria-live="polite">
+          <div class="phone-screen has-phone-media phone-t-story" id="smPhoneScreen" aria-live="polite">
+            <div class="phone-media">
+              <img class="phone-media-gif" id="smPhoneMedia" src="assets/phone-preview.gif" alt="" loading="lazy" decoding="async" width="400" height="400" />
+            </div>
             <div class="phone-notch"></div>
             <div class="phone-bars" id="smPhoneBars"><div class="phone-bar active"></div><div class="phone-bar active"></div><div class="phone-bar"></div><div class="phone-bar"></div><div class="phone-bar"></div></div>
             <div class="phone-icon" id="smPhoneIcon">🎬</div>
@@ -1527,7 +1548,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     function phoneTheme(slide) {
       if (!screen || !slide) return;
       var cls = slide.getAttribute('data-phone-class') || 'phone-t-story';
-      screen.className = 'phone-screen ' + cls;
+      screen.className = 'phone-screen has-phone-media ' + cls;
       if (icon) icon.textContent = slide.getAttribute('data-phone-icon') || '🎬';
       if (line1) line1.textContent = slide.getAttribute('data-phone-line1') || '';
       if (line2) line2.textContent = slide.getAttribute('data-phone-line2') || '';
