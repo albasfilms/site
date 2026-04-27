@@ -82,8 +82,13 @@ html{background:#ECEAE8}body{background:#ECEAE8;color:var(--black);font-family:v
 .diferenciais-grid.reveal.visible .diferencial-item:nth-child(7){transition-delay:0.27s}
 .diferenciais-grid.reveal.visible .diferencial-item:nth-child(8){transition-delay:0.31s}
 .dep-grid.reveal.visible .dep-card:nth-child(1){transition-delay:0.06s}
-.dep-grid.reveal.visible .dep-card:nth-child(2){transition-delay:0.14s}
-.dep-grid.reveal.visible .dep-card:nth-child(3){transition-delay:0.22s}
+.dep-grid.reveal.visible .dep-card:nth-child(2){transition-delay:0.1s}
+.dep-grid.reveal.visible .dep-card:nth-child(3){transition-delay:0.14s}
+.dep-grid.reveal.visible .dep-card:nth-child(4){transition-delay:0.18s}
+.dep-grid.reveal.visible .dep-card:nth-child(5){transition-delay:0.22s}
+.dep-grid.reveal.visible .dep-card:nth-child(6){transition-delay:0.26s}
+.dep-grid.reveal.visible .dep-card:nth-child(7){transition-delay:0.3s}
+.dep-grid.reveal.visible .dep-card:nth-child(8){transition-delay:0.34s}
 
 /* Hover dos cartões depois da entrada (especificidade > estado .visible) */
 .servicos-grid.reveal.visible .servico-card:hover{
@@ -182,14 +187,14 @@ nav.scrolled{
 }
 .hero-logo-block{margin-bottom:44px;animation:fadeInUp 1s cubic-bezier(.25,.46,.45,.94) 0.38s both}
 .hero-logo-img{
-  height:clamp(120px,14vw,172px);
+  height:clamp(140px,17vw,210px);
   width:auto;
-  max-width:min(92vw,480px);
+  max-width:min(94vw,520px);
   display:block;
   margin:0 auto;
   animation:heroLogoDrift 7s ease-in-out 1.2s infinite;
 }
-.hero-brand-name{font-family:var(--sans);font-size:11px;font-weight:300;letter-spacing:0.42em;text-transform:uppercase;color:var(--mid);margin-top:16px}
+.hero-brand-name{font-family:var(--sans);font-size:11px;font-weight:300;letter-spacing:0.42em;text-transform:uppercase;color:var(--mid);margin-top:6px}
 .hero-headline{
   font-family:var(--serif);font-size:clamp(34px,5vw,72px);font-weight:300;line-height:1.15;
   color:var(--black);margin-bottom:22px;max-width:680px;
@@ -325,6 +330,12 @@ nav.scrolled{
   justify-content:center;
   text-align:center;
 }
+a.servico-card{
+  color:inherit;
+  text-decoration:none;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
 .servico-card:hover{
   border-color:#bbb;
   transform:translateY(-3px);
@@ -334,6 +345,17 @@ nav.scrolled{
   font-family:var(--serif);font-size:clamp(19px,2.9vw,24px);font-weight:400;color:var(--black);
   margin:0;line-height:1.22;max-width:100%;text-wrap:balance;
 }
+.servico-cta{
+  font-family:var(--sans);
+  font-size:10px;
+  font-weight:400;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--mid);
+  margin-top:12px;
+  transition:color 0.25s;
+}
+a.servico-card:hover .servico-cta{color:var(--graphite)}
 .servico-card--logo{display:none}
 @media(min-width:1025px){
   .servico-card--logo{
@@ -383,19 +405,18 @@ a.portfolio-item{color:inherit;text-decoration:none;-webkit-tap-highlight-color:
 /* ═══════════════════════════════
    STORYMAKER
    ═══════════════════════════════ */
-#storymaker{padding:68px 72px;background:var(--white);min-width:0}
+#storymaker{padding:68px 72px;background:var(--white);min-width:0;scroll-margin-top:88px}
 .storymaker-grid{
   max-width:1220px;
   margin-inline:auto;
   min-width:0;
 }
 /* Linha 1: “Por que contratar” + “Conheça cada serviço” centrados.
-   Linha 2: deck — só o título do serviço + telemóvel, alinhados ao centro na vertical; lista numa faixa full-width por baixo (JS).
-   Linha 3: navegação do carrossel. */
+   Linha 2: deck — título + setas por baixo na coluna esquerda; telemóvel à direita; lista numa faixa full-width (JS). */
 .storymaker-mid-wrap{
   display:grid;
   grid-template-columns:minmax(0,1fr);
-  grid-template-rows:auto auto auto;
+  grid-template-rows:auto auto;
   row-gap:clamp(16px,2.2vw,28px);
   align-items:start;
   min-width:0;
@@ -465,15 +486,17 @@ a.portfolio-item{color:inherit;text-decoration:none;-webkit-tap-highlight-color:
   padding-top:0;
 }
 .sm-topics-strip .sm-topics li:last-child{margin-bottom:0}
-.storymaker-mid-wrap .sm-carousel-nav{
-  grid-column:1;
-  grid-row:3;
-  margin-top:0;
-  padding-top:20px;
-}
 .storymaker-pretitle{font-family:var(--sans);font-size:9px;font-weight:400;letter-spacing:0.4em;text-transform:uppercase;color:var(--mid);margin-bottom:20px;display:block}
 .storymaker-title{font-family:var(--serif);font-size:clamp(34px,3.8vw,54px);font-weight:300;line-height:1.1;color:var(--black);margin-bottom:0;text-wrap:balance}
-.sm-carousel-wrap{position:relative;min-width:0;width:100%}
+.sm-carousel-wrap{
+  position:relative;
+  min-width:0;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:clamp(8px,1.2vw,14px);
+}
 .sm-carousel{overflow-x:hidden;overflow-y:visible;border-radius:2px;width:100%;min-width:0;max-width:100%}
 .sm-track{display:flex;transition:transform 0.5s cubic-bezier(.22,1,.36,1);will-change:transform;min-width:0}
 .sm-slide{flex-shrink:0;flex-grow:0;box-sizing:border-box;min-width:0}
@@ -502,15 +525,26 @@ a.portfolio-item{color:inherit;text-decoration:none;-webkit-tap-highlight-color:
 }
 .sm-carousel-nav{
   display:flex;
+  flex-direction:column;
   align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  margin-top:28px;
-  padding-top:24px;
-  border-top:1px solid var(--light-line);
+  justify-content:center;
+  gap:clamp(10px,1.4vw,14px);
+  margin-top:0;
+  padding-top:clamp(6px,1vw,12px);
+  border-top:none;
 }
-.sm-counter{font-family:var(--sans);font-size:12px;letter-spacing:0.12em;color:var(--mid)}
-.sm-arrows{display:flex;gap:10px}
+.sm-carousel-wrap > .sm-carousel-nav{
+  width:100%;
+  max-width:100%;
+}
+.sm-counter{
+  font-family:var(--sans);
+  font-size:12px;
+  letter-spacing:0.12em;
+  color:var(--mid);
+  text-align:center;
+}
+.sm-arrows{display:flex;gap:10px;justify-content:center}
 .sm-arrow{
   width:44px;height:44px;border-radius:50%;
   border:1px solid var(--light-line);
@@ -548,13 +582,29 @@ a.portfolio-item{color:inherit;text-decoration:none;-webkit-tap-highlight-color:
   overflow:hidden;
   pointer-events:none;
 }
-.phone-media-gif{
+.phone-media-gif,
+.phone-media-video{
   width:100%;
   height:100%;
   object-fit:cover;
   object-position:center;
   display:block;
 }
+.phone-media-video{
+  pointer-events:none;
+}
+.phone-media-video.is-hidden{display:none!important}
+.phone-media-photo{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:none;
+  border-radius:22px;
+}
+.phone-media-photo.is-visible{display:block}
 .phone-tag{font-family:var(--sans);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:4px}
 .phone-notch{position:absolute;top:5px;left:50%;transform:translateX(-50%);width:68px;height:16px;background:var(--bg-dark);border-radius:0 0 9px 9px;z-index:10}
 .phone-bars{display:flex;gap:5px;padding:16px 12px 0;position:absolute;top:0;left:0;right:0;z-index:6}
@@ -637,7 +687,7 @@ a.portfolio-item{color:inherit;text-decoration:none;-webkit-tap-highlight-color:
 .dep-subtitle{font-family:var(--sans);font-size:14px;font-weight:300;color:var(--mid);margin-bottom:48px;line-height:1.6;max-width:560px}
 .dep-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));
   gap:26px;
   margin-bottom:52px;
   max-width:1200px;
@@ -850,7 +900,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
   nav.scrolled{padding:12px 20px}
   #hero{padding:88px 20px clamp(28px,5vh,44px)}
   .hero-scroll-indicator{margin-top:clamp(22px,4vh,40px)}
-  .hero-logo-img{height:clamp(92px,28vw,118px);max-width:78vw}
+  .hero-logo-img{height:clamp(104px,30vw,138px);max-width:82vw}
   .nav-logo-img{height:42px}
   #sobre{padding:36px 20px}
   #servicos{padding:36px 20px}
@@ -858,6 +908,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
   .servicos-grid{grid-template-columns:1fr 1fr;gap:12px}
   .servico-card{padding:16px 12px}
   .servico-name{font-size:clamp(15px,3.6vw,18px);line-height:1.2}
+  .servico-cta{margin-top:8px;font-size:9px;letter-spacing:0.16em}
   #portfolio{padding:36px 20px}.portfolio-grid{grid-template-columns:1fr}.portfolio-item:first-child{grid-column:auto;min-height:200px}
   .portfolio-title{margin-bottom:32px}
   #portfolio .portfolio-grid .portfolio-item:nth-child(4){grid-column:auto}
@@ -898,7 +949,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     margin:0;
   }
   .sm-slide-deck .sm-topics-strip{grid-column:1 / -1;grid-row:2}
-  #storymaker .storymaker-mid-wrap .sm-carousel-nav{padding-top:14px}
+  #storymaker .sm-carousel-wrap .sm-carousel-nav{padding-top:4px}
   #diferenciais{padding:36px 20px}
   .diferenciais-title{margin-bottom:36px}
   .diferenciais-scroll{
@@ -1050,7 +1101,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     <li><a href="#depoimentos">Depoimentos</a></li>
   </ul>
   <div class="nav-actions">
-    <a href="#cta-final" class="nav-cta">Solicitar Orçamento</a>
+    <a href="https://wa.me/5541996162793?text=Ol%C3%A1%20Albas%2C%20gostaria%20de%20um%20or%C3%A7amento%20" class="nav-cta" target="_blank" rel="noopener noreferrer">Solicitar Orçamento</a>
     <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -1068,7 +1119,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
   <p class="hero-sub">Criamos registros autênticos, elegantes e memoráveis.<br>Porque todas as histórias merecem ser traduzidas com estética, sensibilidade e verdade.</p>
   <div class="hero-ctas">
     <a href="#portfolio" class="btn-primary">Ver Portfólio</a>
-    <a href="#cta-final" class="btn-secondary">Solicitar orçamento</a>
+    <a href="https://wa.me/5541996162793?text=Ol%C3%A1%20Albas%2C%20gostaria%20de%20um%20or%C3%A7amento%20" class="btn-secondary" target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
   </div>
   <div class="hero-scroll-indicator">
     <span class="scroll-label">Rolar</span>
@@ -1099,34 +1150,42 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     <h2 class="servicos-title reveal reveal-delay-1">O que criamos com você</h2>
     <p class="servicos-sub reveal reveal-delay-2">Cada entrega é pensada de uma forma única e estratégica para te atendermos de forma personalizada.</p>
   </div>
-  <div class="servicos-grid reveal">
-    <div class="servico-card">
+  <div class="servicos-grid reveal" id="servicosGrid">
+    <a href="#storymaker" class="servico-card" data-sm-slide="0" aria-label="Storymaker — entender mais: ver detalhes do serviço">
       <h3 class="servico-name">Storymaker</h3>
-    </div>
-    <div class="servico-card">
+      <span class="servico-cta">Entender mais</span>
+    </a>
+    <a href="#storymaker" class="servico-card" data-sm-slide="1" aria-label="Filmmaker — entender mais: ver detalhes do serviço">
       <h3 class="servico-name">Filmmaker</h3>
-    </div>
-    <div class="servico-card">
+      <span class="servico-cta">Entender mais</span>
+    </a>
+    <a href="#storymaker" class="servico-card" data-sm-slide="2" aria-label="Captação mobile — entender mais: ver detalhes do serviço">
       <h3 class="servico-name">Captação mobile</h3>
-    </div>
-    <div class="servico-card">
+      <span class="servico-cta">Entender mais</span>
+    </a>
+    <a href="#storymaker" class="servico-card" data-sm-slide="3" aria-label="Captação aérea — entender mais: ver detalhes do serviço">
       <h3 class="servico-name">Captação aérea</h3>
-    </div>
-    <div class="servico-card">
+      <span class="servico-cta">Entender mais</span>
+    </a>
+    <a href="#storymaker" class="servico-card" data-sm-slide="4" aria-label="Ensaios fotográficos — entender mais: ver detalhes do serviço">
       <h3 class="servico-name">Ensaios fotográficos</h3>
-    </div>
-    <div class="servico-card">
+      <span class="servico-cta">Entender mais</span>
+    </a>
+    <a href="#storymaker" class="servico-card" data-sm-slide="5" aria-label="Social media — entender mais: ver detalhes do serviço">
       <h3 class="servico-name">Social media / conteúdo</h3>
-    </div>
-    <div class="servico-card">
+      <span class="servico-cta">Entender mais</span>
+    </a>
+    <a href="#storymaker" class="servico-card" data-sm-slide="6" aria-label="Identidade visual — entender mais: ver detalhes do serviço">
       <h3 class="servico-name">Identidade visual</h3>
-    </div>
+      <span class="servico-cta">Entender mais</span>
+    </a>
     <div class="servico-card servico-card--logo">
       <img class="servico-logo-img" src="assets/logo-albas-films.png" alt="Albas Films" width="800" height="450" decoding="async" />
     </div>
-    <div class="servico-card">
+    <a href="#storymaker" class="servico-card" data-sm-slide="7" aria-label="Sites e E-commerce — entender mais: ver detalhes do serviço">
       <h3 class="servico-name">Sites / E-commerce</h3>
-    </div>
+      <span class="servico-cta">Entender mais</span>
+    </a>
   </div>
 </section>
 
@@ -1166,7 +1225,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
       <div class="sm-carousel-wrap reveal reveal-delay-1">
         <div class="sm-carousel" id="smCarousel" role="region" aria-roledescription="carrossel" aria-label="Serviços da Albas Films">
           <div class="sm-track" id="smTrack">
-            <article class="sm-slide" data-phone-class="phone-t-story" data-phone-icon="🎬" data-phone-line1="Preview em tempo real" data-phone-line2="Stories e bastidores" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
+            <article class="sm-slide" data-phone-class="phone-t-story" data-phone-icon="🎬" data-phone-line1="Preview em tempo real" data-phone-line2="Stories e bastidores" data-phone-tag="Placeholder — substitua por vídeo ou mock real" data-phone-video="Video/story maker.mp4">
               <div class="sm-slide-inner">
                 <div class="sm-slide-intro">
                 <h3 class="sm-slide-title">Storymaker</h3>
@@ -1179,7 +1238,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
                 </ul>
               </div>
             </article>
-            <article class="sm-slide" data-phone-class="phone-t-film" data-phone-icon="🎥" data-phone-line1="Trecho do filme" data-phone-line2="Narrativa contínua" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
+            <article class="sm-slide" data-phone-class="phone-t-film" data-phone-icon="🎥" data-phone-line1="Trecho do filme" data-phone-line2="Narrativa contínua" data-phone-tag="Placeholder — substitua por vídeo ou mock real" data-phone-video="Video/filmmaker.mp4">
               <div class="sm-slide-inner">
                 <div class="sm-slide-intro">
                 <h3 class="sm-slide-title">Filmmaker</h3>
@@ -1192,7 +1251,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
                 </ul>
               </div>
             </article>
-            <article class="sm-slide" data-phone-class="phone-t-cam" data-phone-icon="📹" data-phone-line1="Captação em movimento" data-phone-line2="Ritmo cinematográfico" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
+            <article class="sm-slide" data-phone-class="phone-t-cam" data-phone-icon="📹" data-phone-line1="Captação em movimento" data-phone-line2="Ritmo cinematográfico" data-phone-tag="Placeholder — substitua por vídeo ou mock real" data-phone-image="imagessite/Captação aerea-mobile.png">
               <div class="sm-slide-inner">
                 <div class="sm-slide-intro">
                 <h3 class="sm-slide-title">Captação mobile</h3>
@@ -1205,7 +1264,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
                 </ul>
               </div>
             </article>
-            <article class="sm-slide" data-phone-class="phone-t-aerial" data-phone-icon="✈️" data-phone-line1="Planos amplos e revelação" data-phone-line2="Perspectiva aérea" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
+            <article class="sm-slide" data-phone-class="phone-t-aerial" data-phone-icon="✈️" data-phone-line1="Planos amplos e revelação" data-phone-line2="Perspectiva aérea" data-phone-tag="Placeholder — substitua por vídeo ou mock real" data-phone-image="imagessite/Captação aerea-mobile.png">
               <div class="sm-slide-inner">
                 <div class="sm-slide-intro">
                 <h3 class="sm-slide-title">Captação aérea</h3>
@@ -1218,7 +1277,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
                 </ul>
               </div>
             </article>
-            <article class="sm-slide" data-phone-class="phone-t-photo" data-phone-icon="📷" data-phone-line1="Ensaio em destaque" data-phone-line2="Estética editorial" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
+            <article class="sm-slide" data-phone-class="phone-t-photo" data-phone-icon="📷" data-phone-line1="Ensaio em destaque" data-phone-line2="Estética editorial" data-phone-tag="Placeholder — substitua por vídeo ou mock real" data-phone-image="imagessite/Ensaios fotográficos.png">
               <div class="sm-slide-inner">
                 <div class="sm-slide-intro">
                 <h3 class="sm-slide-title">Ensaios fotográficos</h3>
@@ -1231,7 +1290,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
                 </ul>
               </div>
             </article>
-            <article class="sm-slide" data-phone-class="phone-t-social" data-phone-icon="📱" data-phone-line1="Conteúdo para redes" data-phone-line2="Autoridade de marca" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
+            <article class="sm-slide" data-phone-class="phone-t-social" data-phone-icon="📱" data-phone-line1="Conteúdo para redes" data-phone-line2="Autoridade de marca" data-phone-tag="Placeholder — substitua por vídeo ou mock real" data-phone-image="imagessite/Social Midia .png">
               <div class="sm-slide-inner">
                 <div class="sm-slide-intro">
                 <h3 class="sm-slide-title">Social media / conteúdo</h3>
@@ -1244,7 +1303,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
                 </ul>
               </div>
             </article>
-            <article class="sm-slide" data-phone-class="phone-t-brand" data-phone-icon="✨" data-phone-line1="Identidade em evolução" data-phone-line2="Direção de arte" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
+            <article class="sm-slide" data-phone-class="phone-t-brand" data-phone-icon="✨" data-phone-line1="Identidade em evolução" data-phone-line2="Direção de arte" data-phone-tag="Placeholder — substitua por vídeo ou mock real" data-phone-image="imagessite/id visual.png">
               <div class="sm-slide-inner">
                 <div class="sm-slide-intro">
                 <h3 class="sm-slide-title">Identidade visual</h3>
@@ -1257,7 +1316,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
                 </ul>
               </div>
             </article>
-            <article class="sm-slide" data-phone-class="phone-t-web" data-phone-icon="🛒" data-phone-line1="Site e e-commerce" data-phone-line2="Presença digital" data-phone-tag="Placeholder — substitua por vídeo ou mock real">
+            <article class="sm-slide" data-phone-class="phone-t-web" data-phone-icon="🛒" data-phone-line1="Site e e-commerce" data-phone-line2="Presença digital" data-phone-tag="Placeholder — substitua por vídeo ou mock real" data-phone-image="imagessite/sites.png">
               <div class="sm-slide-inner">
                 <div class="sm-slide-intro">
                 <h3 class="sm-slide-title">Sites e E-commerces</h3>
@@ -1272,12 +1331,22 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
             </article>
           </div>
         </div>
+        <div class="sm-carousel-nav">
+          <span class="sm-counter" aria-live="polite"><span id="smCountCur">1</span> / <span id="smCountTot">8</span></span>
+          <div class="sm-arrows">
+            <button type="button" class="sm-arrow" id="smPrev" aria-label="Serviço anterior">‹</button>
+            <button type="button" class="sm-arrow" id="smNext" aria-label="Próximo serviço">›</button>
+          </div>
+        </div>
       </div>
       <div class="storymaker-col-phone reveal reveal-delay-2" style="position:relative">
         <div class="storymaker-phone" id="smPhoneShell">
           <div class="phone-screen has-phone-media phone-t-story" id="smPhoneScreen" aria-live="polite">
             <div class="phone-media">
-              <img class="phone-media-gif" id="smPhoneMedia" src="assets/phone-preview.gif" alt="" loading="lazy" decoding="async" width="400" height="400" />
+              <video id="smPhoneMedia" class="phone-media-video" width="400" height="400" muted playsinline webkit-playsinline loop autoplay preload="none" disablepictureinpicture aria-label="Pré-visualização em vídeo do serviço no telemóvel">
+                <source src="Video/story maker.mp4" type="video/mp4" />
+              </video>
+              <img id="smPhoneImage" class="phone-media-photo" width="400" height="400" alt="" decoding="async" loading="lazy" aria-hidden="true" />
             </div>
             <div class="phone-notch"></div>
             <div class="phone-bars" id="smPhoneBars"><div class="phone-bar active"></div><div class="phone-bar active"></div><div class="phone-bar"></div><div class="phone-bar"></div><div class="phone-bar"></div></div>
@@ -1289,13 +1358,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
       </div>
       <div class="sm-topics-strip reveal reveal-delay-1" id="smTopicsStrip" aria-live="polite"></div>
     </div>
-      <div class="sm-carousel-nav">
-          <span class="sm-counter" aria-live="polite"><span id="smCountCur">1</span> / <span id="smCountTot">8</span></span>
-          <div class="sm-arrows">
-            <button type="button" class="sm-arrow" id="smPrev" aria-label="Serviço anterior">‹</button>
-            <button type="button" class="sm-arrow" id="smNext" aria-label="Próximo serviço">›</button>
-          </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1355,21 +1417,51 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     <div class="dep-grid reveal">
       <div class="dep-card">
         <span class="dep-stars">★★★★★</span>
-        <p class="dep-text">"Sensibilidade rara. Sentimos cada olhar escolhido com carinho."</p>
-        <div class="dep-name">Marina & Tom</div>
-        <div class="dep-service">Casamento · Filme Autoral</div>
+        <p class="dep-text">“Sem palavras, simplesmente perfeito. Vocês captaram a emoção de cada momento com excelência, sensibilidade e carinho.”</p>
+        <div class="dep-name">Geovana</div>
+        <div class="dep-service">Mel e William · Casamento</div>
       </div>
       <div class="dep-card">
         <span class="dep-stars">★★★★★</span>
-        <p class="dep-text">"Conteúdo para marca com alma — finalmente algo que soa a gente."</p>
-        <div class="dep-name">Helena M.</div>
-        <div class="dep-service">Corporativo · Campanha Social</div>
+        <p class="dep-text">“Estamos muito felizes com todo o carinho, cuidado e dedicação. Os materiais ficaram incríveis, feitos com muita excelência.”</p>
+        <div class="dep-name">Bruno e Letícia</div>
+        <div class="dep-service">Casamento</div>
       </div>
       <div class="dep-card">
         <span class="dep-stars">★★★★★</span>
-        <p class="dep-text">"Os stories do evento viraram lembrança viva para quem não pôde vir."</p>
-        <div class="dep-name">Coletivo Aurora</div>
-        <div class="dep-service">Evento · Storymaker</div>
+        <p class="dep-text">“Tudo fluiu com leveza, sintonia e tranquilidade. Foi muito especial contar com profissionais tão maravilhosos.”</p>
+        <div class="dep-name">Bruno e Letícia</div>
+        <div class="dep-service">Casamento</div>
+      </div>
+      <div class="dep-card">
+        <span class="dep-stars">★★★★★</span>
+        <p class="dep-text">“Nós adoramos o trabalho de vocês. Impecável.”</p>
+        <div class="dep-name">Flávia</div>
+        <div class="dep-service">Mãe do Germano · Família</div>
+      </div>
+      <div class="dep-card">
+        <span class="dep-stars">★★★★★</span>
+        <p class="dep-text">“Obrigada por cada vídeo lindo. Vocês registraram tudo com muito carinho, dedicação e sensibilidade.”</p>
+        <div class="dep-name">Bruno e Letícia</div>
+        <div class="dep-service">Casamento</div>
+      </div>
+      <div class="dep-card">
+        <span class="dep-stars">★★★★★</span>
+        <p class="dep-text">“Além dos stories lindos do dia, ainda fizeram fotos maravilhosas.”</p>
+        <div class="dep-name">Geovana</div>
+        <div class="dep-service">Mel · Casamento</div>
+      </div>
+      <div class="dep-card">
+        <span class="dep-stars">★★★★★</span>
+        <p class="dep-text">“Foi muito mais do que esperávamos. Vocês deixaram registros incríveis e tornaram tudo ainda mais especial.”</p>
+        <div class="dep-name">Ester e Filipe</div>
+        <div class="dep-service">Casamento</div>
+      </div>
+      <div class="dep-card">
+        <span class="dep-stars">★★★★★</span>
+        <p class="dep-text">“Como família, não temos palavras para agradecer por tanto amor, carinho e atenção com eles.”</p>
+        <div class="dep-name">Carol</div>
+        <div class="dep-service">Tia da Ester · Família</div>
       </div>
     </div>
   </div>
@@ -1391,8 +1483,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     <h2 class="cta-headline">Seu evento merece ser lembrado com verdade, estética e emoção.</h2>
     <p class="cta-sub">Conte-nos sobre seu casamento, marca ou evento — devolveremos um direcionamento único e um orçamento alinhado ao que você precisa</p>
     <div class="cta-buttons">
-      <a href="/cdn-cgi/l/email-protection#ddbeb2b3a9bca9b29dbcb1bfbcaebbb4b1b0aef3beb2b0f3bfaf" class="btn-cta-white">Solicitar Orçamento</a>
-      <a href="https://wa.me/5541999999999" class="btn-cta-outline">Falar no WhatsApp</a>
+      <a href="https://wa.me/5541996162793?text=Ol%C3%A1%20Albas%2C%20gostaria%20de%20um%20or%C3%A7amento%20" class="btn-cta-white" target="_blank" rel="noopener noreferrer">Solicitar Orçamento</a>
+      <a href="https://wa.me/5541996162793" class="btn-cta-outline" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
     </div>
   </div>
 </section>
@@ -1419,7 +1511,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     <div>
       <p class="footer-col-title">Contato</p>
       <div class="footer-contact-item"><div class="footer-contact-label">Instagram</div><a href="https://instagram.com/albasfilms" class="footer-contact-value">@albasfilms</a></div>
-      <div class="footer-contact-item"><div class="footer-contact-label">WhatsApp</div><a href="https://wa.me/5541999999999" class="footer-contact-value">+55 (41) 9 9999-9999</a></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">WhatsApp</div><a href="https://wa.me/5541996162793?text=Ol%C3%A1%20Albas%2C%20gostaria%20de%20um%20or%C3%A7amento%20" class="footer-contact-value" target="_blank" rel="noopener noreferrer">+55 (41) 99616-2793</a></div>
       <div class="footer-contact-item"><div class="footer-contact-label">E-mail</div><a href="/cdn-cgi/l/email-protection#b9dad6d7cdd8cdd6f9d8d5dbd8cadfd0d5d4ca97dad6d497dbcb" class="footer-contact-value"><span class="__cf_email__" data-cfemail="6a0905041e0b1e052a0b06080b190c0306071944090507440818">[email&#160;protected]</span></a></div>
     </div>
   </div>
@@ -1427,7 +1519,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     <p class="footer-copy">© 2025 Albas Films. Todos os direitos reservados.</p>
     <div class="footer-socials">
       <a href="https://instagram.com/albasfilms" class="footer-social">Instagram</a>
-      <a href="https://wa.me/5541999999999" class="footer-social">WhatsApp</a>
+      <a href="https://wa.me/5541996162793?text=Ol%C3%A1%20Albas%2C%20gostaria%20de%20um%20or%C3%A7amento%20" class="footer-social" target="_blank" rel="noopener noreferrer">WhatsApp</a>
       <a href="/cdn-cgi/l/email-protection#791a16170d180d163918151b180a1f1015140a571a1614571b0b" class="footer-social">E-mail</a>
     </div>
   </div>
@@ -1440,7 +1532,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     <p class="modal-category" id="modalCategory"></p>
     <h2 class="modal-title" id="modalTitle"></h2>
     <p class="modal-desc" id="modalDesc"></p>
-    <a href="#cta-final" class="btn-cta-white" onclick="closeModal()" style="border-radius:100px">Solicitar Orçamento</a>
+    <a href="https://wa.me/5541996162793?text=Ol%C3%A1%20Albas%2C%20gostaria%20de%20um%20or%C3%A7amento%20" class="btn-cta-white" onclick="closeModal()" style="border-radius:100px" target="_blank" rel="noopener noreferrer">Solicitar Orçamento</a>
   </div>
 </div>
 
@@ -1522,10 +1614,43 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     var curEl = document.getElementById('smCountCur');
     var totEl = document.getElementById('smCountTot');
     var topicsStrip = document.getElementById('smTopicsStrip');
+    var phoneVideo = document.getElementById('smPhoneMedia');
+    var phoneImage = document.getElementById('smPhoneImage');
     var n = slides.length;
     var idx = 0;
     if (!n) return;
     totEl.textContent = String(n);
+
+    function syncPhoneMedia(slide) {
+      if (!slide || !phoneVideo || !phoneImage) return;
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var vidUrl = (slide.getAttribute('data-phone-video') || '').trim();
+      var imgUrl = (slide.getAttribute('data-phone-image') || '').trim();
+      try { phoneVideo.pause(); } catch (e0) {}
+      phoneVideo.classList.add('is-hidden');
+      phoneImage.classList.remove('is-visible');
+      phoneImage.removeAttribute('src');
+      if (vidUrl) {
+        phoneVideo.classList.remove('is-hidden');
+        var srcEl = phoneVideo.querySelector('source');
+        if (srcEl) {
+          var cur = srcEl.getAttribute('src') || '';
+          if (cur !== vidUrl) {
+            srcEl.setAttribute('src', vidUrl);
+            try { phoneVideo.load(); } catch (e1) {}
+          }
+          if (!reduced) {
+            var p = phoneVideo.play();
+            if (p && typeof p.catch === 'function') p.catch(function () {});
+          }
+        }
+        return;
+      }
+      if (imgUrl) {
+        phoneImage.setAttribute('src', imgUrl);
+        phoneImage.classList.add('is-visible');
+      }
+    }
 
     function slideW() {
       var cap = window.innerWidth || document.documentElement.clientWidth || 0;
@@ -1548,11 +1673,15 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     function phoneTheme(slide) {
       if (!screen || !slide) return;
       var cls = slide.getAttribute('data-phone-class') || 'phone-t-story';
-      screen.className = 'phone-screen has-phone-media ' + cls;
+      var vidUrl = (slide.getAttribute('data-phone-video') || '').trim();
+      var imgUrl = (slide.getAttribute('data-phone-image') || '').trim();
+      var useMedia = !!(vidUrl || imgUrl);
+      screen.className = 'phone-screen ' + (useMedia ? 'has-phone-media ' : '') + cls;
       if (icon) icon.textContent = slide.getAttribute('data-phone-icon') || '🎬';
       if (line1) line1.textContent = slide.getAttribute('data-phone-line1') || '';
       if (line2) line2.textContent = slide.getAttribute('data-phone-line2') || '';
       if (tag) tag.textContent = slide.getAttribute('data-phone-tag') || '';
+      syncPhoneMedia(slide);
     }
 
     function syncTopics() {
@@ -1627,6 +1756,62 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
     else boot();
     window.addEventListener('load', applyLayout);
+
+    window.smGoToStorySlide = function (i) {
+      var t = parseInt(i, 10);
+      if (isNaN(t)) t = 0;
+      t = Math.max(0, Math.min(n - 1, t));
+      layoutSizes();
+      var motion = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+      go(t, motion);
+    };
+  })();
+
+  (function () {
+    var grid = document.getElementById('servicosGrid');
+    if (!grid) return;
+    grid.addEventListener('click', function (e) {
+      var a = e.target.closest('a.servico-card[data-sm-slide]');
+      if (!a) return;
+      e.preventDefault();
+      var idx = parseInt(a.getAttribute('data-sm-slide'), 10);
+      var sec = document.getElementById('storymaker');
+      if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (typeof window.smGoToStorySlide === 'function') window.smGoToStorySlide(idx);
+    });
+  })();
+
+  /* Vídeo do mockup: só carrega/reproduz quando o telemóvel entra no ecrã (pesa menos no primeiro carregamento) */
+  (function () {
+    var v = document.getElementById('smPhoneMedia');
+    if (!v) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      v.removeAttribute('autoplay');
+      try { v.pause(); } catch (e) {}
+      return;
+    }
+    var shell = document.getElementById('smPhoneShell');
+    var target = shell || v;
+    var started = false;
+    function startPhoneVideo() {
+      if (started) return;
+      started = true;
+      if (!v || v.classList.contains('is-hidden')) return;
+      v.preload = 'auto';
+      try { v.load(); } catch (e) {}
+      var p = v.play();
+      if (p && typeof p.catch === 'function') p.catch(function () {});
+    }
+    if (!('IntersectionObserver' in window)) {
+      startPhoneVideo();
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) startPhoneVideo();
+      });
+    }, { rootMargin: '100px 0px', threshold: 0.08 });
+    io.observe(target);
   })();
 </script>
 </body>

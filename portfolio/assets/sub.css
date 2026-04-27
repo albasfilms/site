@@ -103,7 +103,7 @@ a{color:inherit}
   grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
   gap:20px;
 }
-/* Cartão no estilo “serviços”: capa + corpo com borda e hover */
+/* Cartão no estilo “serviços”: capa + corpo com borda e hover (article + links separados) */
 .folder-card{
   display:flex;
   flex-direction:column;
@@ -113,7 +113,6 @@ a{color:inherit}
   background:var(--white);
   border:1px solid var(--light-line);
   border-radius:10px;
-  text-decoration:none;
   color:var(--black);
   transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
 }
@@ -122,9 +121,19 @@ a{color:inherit}
   transform:translateY(-3px);
   box-shadow:0 8px 32px rgba(0,0,0,0.06);
 }
-.folder-card:focus-visible{
+.folder-cover-hit{
+  display:block;
+  flex-shrink:0;
+  text-decoration:none;
+  color:inherit;
+  -webkit-tap-highlight-color:transparent;
+}
+.folder-cover-hit:focus-visible{
   outline:2px solid var(--graphite);
-  outline-offset:3px;
+  outline-offset:2px;
+}
+.folder-cover-hit:focus-visible .folder-cover{
+  outline:none;
 }
 .pf-note code{
   font-family:ui-monospace,monospace;
@@ -170,6 +179,26 @@ a{color:inherit}
   margin-bottom:10px;
   color:var(--black);
 }
+a.folder-name{
+  text-decoration:none;
+  display:inline-block;
+  max-width:100%;
+}
+a.folder-name:hover{
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+a.folder-name[href^="http"]::after{
+  content:" ↗";
+  font-family:var(--sans);
+  font-size:0.55em;
+  font-weight:400;
+  letter-spacing:0;
+  text-decoration:none;
+  display:inline;
+  opacity:0.5;
+  margin-left:0.15em;
+}
 .folder-meta{
   font-family:var(--sans);
   font-size:13px;
@@ -185,6 +214,19 @@ a{color:inherit}
   color:var(--mid);
   flex-shrink:0;
   padding-top:6px;
+}
+a.folder-arrow{
+  text-decoration:none;
+  color:var(--mid);
+  transition:color 0.2s;
+}
+a.folder-arrow:hover{
+  color:var(--graphite);
+}
+a.folder-arrow:focus-visible{
+  outline:2px solid var(--graphite);
+  outline-offset:3px;
+  border-radius:2px;
 }
 .file-list{
   list-style:none;
