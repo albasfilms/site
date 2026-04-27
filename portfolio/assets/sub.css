@@ -197,6 +197,12 @@ a{color:inherit}
   aspect-ratio:4/5;
   background-position:center top;
 }
+/* Logos com arte já em “caixa”: evita crop assimétrico do cover */
+.folder-cover.folder-cover--contain-logo{
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+}
 .folder-card:hover .folder-cover{transform:scale(1.04)}
 .folder-card-foot{
   display:flex;
