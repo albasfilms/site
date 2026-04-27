@@ -103,6 +103,37 @@ a{color:inherit}
   grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
   gap:20px;
 }
+/* Captações e áreas Corporativo em telemóvel: 2 cartões por linha */
+@media (max-width:640px){
+  .folder-grid--captacoes-mobile,
+  .folder-grid--corporativo-areas{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+  }
+  .folder-grid--captacoes-mobile .folder-card-foot,
+  .folder-grid--corporativo-areas .folder-card-foot{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+    padding:14px 12px 16px;
+  }
+  .folder-grid--captacoes-mobile .folder-name,
+  .folder-grid--corporativo-areas .folder-name{
+    font-size:clamp(15px,3.8vw,18px);
+    margin-bottom:4px;
+  }
+  .folder-grid--captacoes-mobile .folder-meta,
+  .folder-grid--corporativo-areas .folder-meta{
+    font-size:11px;
+    line-height:1.45;
+  }
+  .folder-grid--captacoes-mobile .folder-arrow,
+  .folder-grid--corporativo-areas .folder-arrow{
+    font-size:9px;
+    letter-spacing:0.1em;
+    padding-top:0;
+  }
+}
 /* Cartão no estilo “serviços”: capa + corpo com borda e hover (article + links separados) */
 .folder-card{
   display:flex;
@@ -160,6 +191,11 @@ a{color:inherit}
   inset:0;
   background:linear-gradient(to top,rgba(0,0,0,0.22) 0%,transparent 45%);
   pointer-events:none;
+}
+/* Retratos: caixa mais alta + fundo ancorado ao topo (rostos visíveis) */
+.folder-cover.folder-cover--focus-top{
+  aspect-ratio:4/5;
+  background-position:center top;
 }
 .folder-card:hover .folder-cover{transform:scale(1.04)}
 .folder-card-foot{
@@ -272,3 +308,25 @@ a.folder-arrow:focus-visible{
   font-size:14px;
   text-align:center;
 }
+/* Página intermédia: cliente com vários ficheiros .txt (lista de serviços) */
+.pf-servicos-hero{
+  aspect-ratio:21/9;
+  max-height:200px;
+  margin-bottom:28px;
+  border-radius:10px;
+  border:1px solid var(--light-line);
+  background-color:#e4e1de;
+  background-size:contain;
+  background-position:center;
+  background-repeat:no-repeat;
+  filter:grayscale(1);
+}
+.pf-back{
+  margin-top:32px;
+  font-family:var(--sans);
+  font-size:11px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+}
+.pf-back a{color:var(--mid);text-decoration:none}
+.pf-back a:hover{color:var(--graphite);text-decoration:underline}
