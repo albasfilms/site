@@ -129,6 +129,16 @@ nav{
   background-color:var(--bg);
   transition:background 0.5s,padding 0.4s,box-shadow 0.4s;
 }
+nav::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:calc(-1 * env(safe-area-inset-top, 0px));
+  height:env(safe-area-inset-top, 0px);
+  background:var(--bg);
+  pointer-events:none;
+}
 nav > a[href="#hero"]{justify-self:start}
 .nav-links{grid-column:2;justify-self:center;margin:0;padding:0}
 .nav-actions{
@@ -187,6 +197,16 @@ nav.scrolled{
   padding-left:env(safe-area-inset-left,0px);
   padding-right:env(safe-area-inset-right,0px);
   box-sizing:border-box;
+}
+.mobile-menu::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:calc(-1 * env(safe-area-inset-top, 0px));
+  height:env(safe-area-inset-top, 0px);
+  background:var(--white);
+  pointer-events:none;
 }
 .mobile-menu.active{opacity:1;pointer-events:all}
 .mobile-menu a{font-family:var(--serif);font-size:32px;font-weight:300;color:var(--black);text-decoration:none;font-style:italic;transition:color 0.3s}
@@ -951,6 +971,21 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
   #cta-final{padding:44px 32px}.cta-card{padding:48px 32px}
   footer{padding:40px 32px 26px}.footer-top{grid-template-columns:1fr;gap:32px}.footer-bottom{flex-direction:column;gap:16px;text-align:center}
 }
+@supports (-webkit-touch-callout: none) {
+  nav{padding-top:calc(22px + constant(safe-area-inset-top))}
+  nav.scrolled{padding-top:calc(14px + constant(safe-area-inset-top))}
+  nav::before{top:calc(-1 * constant(safe-area-inset-top));height:constant(safe-area-inset-top)}
+  .mobile-menu{padding-top:constant(safe-area-inset-top);padding-left:constant(safe-area-inset-left);padding-right:constant(safe-area-inset-right)}
+  .mobile-menu::before{top:calc(-1 * constant(safe-area-inset-top));height:constant(safe-area-inset-top)}
+  @media(max-width:1024px){
+    nav{padding-top:calc(20px + constant(safe-area-inset-top))}
+    nav.scrolled{padding-top:calc(14px + constant(safe-area-inset-top))}
+  }
+  @media(max-width:640px){
+    nav{padding-top:calc(18px + constant(safe-area-inset-top))}
+    nav.scrolled{padding-top:calc(12px + constant(safe-area-inset-top))}
+  }
+}
 @media(max-width:640px){
   nav{display:flex;justify-content:space-between;align-items:center;background-color:var(--bg);padding-top:calc(18px + env(safe-area-inset-top, 0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-bottom:18px;padding-left:max(20px,env(safe-area-inset-left,0px));width:100%;max-width:100%}
   nav.scrolled{padding-top:calc(12px + env(safe-area-inset-top, 0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-bottom:12px;padding-left:max(20px,env(safe-area-inset-left,0px))}
@@ -1205,7 +1240,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     <h2 class="sobre-title reveal reveal-delay-1"><span class="sobre-title-row">Apaixonados pelo digital,</span><span class="sobre-title-row">movidos pelo celestial</span></h2>
     <p class="sobre-text reveal reveal-delay-2">Unimos olhar cinematográfico, sensibilidade humana e direção estratégica para transformar encontros, celebrações e narrativas de marca em experiências visuais que permanecem.</p>
     <p class="sobre-text reveal reveal-delay-2">Atendemos <strong>casamentos</strong>, <strong>eventos</strong>, <strong>marcas</strong> e <strong>empresas</strong> que buscam mais do que cobertura: presença, estética cuidada e entrega que conversa com o seu posicionamento.</p>
-    <p class="sobre-instagram reveal reveal-delay-2"><a href="https://www.instagram.com/carolalbas" target="_blank" rel="noopener noreferrer">@carolalbas</a><span class="sobre-instagram-sep"> &amp; </span><a href="https://www.instagram.com/pehalba" target="_blank" rel="noopener noreferrer">@pehalba</a></p>
+    <p class="sobre-instagram reveal reveal-delay-2">Conheça nossos perfis: <a href="https://www.instagram.com/carolalbas" target="_blank" rel="noopener noreferrer">@carolalbas</a><span class="sobre-instagram-sep"> &amp; </span><a href="https://www.instagram.com/pehalba" target="_blank" rel="noopener noreferrer">@pehalba</a></p>
   </div>
   <div class="sobre-right reveal reveal-delay-2">
     <div class="sobre-photo-wrap">
