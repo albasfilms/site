@@ -112,7 +112,7 @@ html{background:#ECEAE8}body{background:#ECEAE8;color:var(--black);font-family:v
   50%{box-shadow:0 0 0 6px rgba(255,255,255,0.06)}
 }
 
-/* NAV — safe-area + visualViewport (JS) evita faixa acima do header no mobile */
+/* NAV — fundo opaco até ao topo (padding safe-area); sem isso o conteúdo “vaza” por trás no iPhone */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:grid;
@@ -126,6 +126,7 @@ nav{
   width:100%;
   max-width:100%;
   box-sizing:border-box;
+  background-color:var(--bg);
   transition:background 0.5s,padding 0.4s,box-shadow 0.4s;
 }
 nav > a[href="#hero"]{justify-self:start}
@@ -165,8 +166,28 @@ nav.scrolled{
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
 .hamburger span{display:block;width:22px;height:1px;background:var(--black);transition:all 0.3s}
 
-/* MOBILE MENU */
-.mobile-menu{position:fixed;inset:0;background:var(--white);z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;pointer-events:none;transition:opacity 0.4s;padding-top:env(safe-area-inset-top, 0px);box-sizing:border-box}
+/* MOBILE MENU — cobre o ecrã inteiro incl. safe area (iPhone Pro / Dynamic Island) */
+.mobile-menu{
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  width:100%;
+  min-height:100vh;
+  min-height:100dvh;
+  min-height:-webkit-fill-available;
+  background:var(--white);
+  z-index:99;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:36px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.4s;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-left:env(safe-area-inset-left,0px);
+  padding-right:env(safe-area-inset-right,0px);
+  box-sizing:border-box;
+}
 .mobile-menu.active{opacity:1;pointer-events:all}
 .mobile-menu a{font-family:var(--serif);font-size:32px;font-weight:300;color:var(--black);text-decoration:none;font-style:italic;transition:color 0.3s}
 .mobile-menu a:hover{color:var(--mid)}
@@ -884,7 +905,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
 }
 
 @media(max-width:1024px){
-  nav{display:flex;justify-content:space-between;align-items:center;padding-top:calc(20px + env(safe-area-inset-top, 0px));padding-right:max(32px,env(safe-area-inset-right,0px));padding-bottom:20px;padding-left:max(32px,env(safe-area-inset-left,0px));width:100%;max-width:none}
+  nav{display:flex;justify-content:space-between;align-items:center;background-color:var(--bg);padding-top:calc(20px + env(safe-area-inset-top, 0px));padding-right:max(32px,env(safe-area-inset-right,0px));padding-bottom:20px;padding-left:max(32px,env(safe-area-inset-left,0px));width:100%;max-width:100%}
   nav.scrolled{padding-top:calc(14px + env(safe-area-inset-top, 0px));padding-right:max(32px,env(safe-area-inset-right,0px));padding-bottom:14px;padding-left:max(32px,env(safe-area-inset-left,0px))}
   .nav-links{display:none}
   .nav-cta{display:none}
@@ -914,7 +935,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
   footer{padding:40px 32px 26px}.footer-top{grid-template-columns:1fr;gap:32px}.footer-bottom{flex-direction:column;gap:16px;text-align:center}
 }
 @media(max-width:640px){
-  nav{display:flex;justify-content:space-between;align-items:center;padding-top:calc(18px + env(safe-area-inset-top, 0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-bottom:18px;padding-left:max(20px,env(safe-area-inset-left,0px));width:100%;max-width:none}
+  nav{display:flex;justify-content:space-between;align-items:center;background-color:var(--bg);padding-top:calc(18px + env(safe-area-inset-top, 0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-bottom:18px;padding-left:max(20px,env(safe-area-inset-left,0px));width:100%;max-width:100%}
   nav.scrolled{padding-top:calc(12px + env(safe-area-inset-top, 0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-bottom:12px;padding-left:max(20px,env(safe-area-inset-left,0px))}
   #hero{padding:88px 20px clamp(28px,5vh,44px)}
   .hero-scroll-indicator{margin-top:clamp(22px,4vh,40px)}
@@ -1581,38 +1602,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
   fixHeroPadding();
   window.addEventListener('resize', fixHeroPadding);
   window.addEventListener('load', fixHeroPadding);
-
-  /* iPhone / Chrome móvel: visualViewport desloca-se da barra do browser; transform em fixed costuma falhar na largura — usar top/left/width do visualViewport. */
-  (function () {
-    var navVv = document.getElementById('mainNav');
-    if (!navVv || !window.visualViewport) return;
-    var vv = window.visualViewport;
-    var mq = window.matchMedia('(max-width: 1024px)');
-    function syncNavViewport() {
-      if (!mq.matches) {
-        navVv.style.top = '';
-        navVv.style.left = '';
-        navVv.style.right = '';
-        navVv.style.width = '';
-        navVv.style.maxWidth = '';
-        return;
-      }
-      var ox = vv.offsetLeft;
-      var oy = vv.offsetTop;
-      navVv.style.top = (-oy) + 'px';
-      navVv.style.left = (-ox) + 'px';
-      navVv.style.right = 'auto';
-      navVv.style.width = vv.width + 'px';
-      navVv.style.maxWidth = 'none';
-    }
-    vv.addEventListener('resize', syncNavViewport);
-    vv.addEventListener('scroll', syncNavViewport);
-    window.addEventListener('scroll', syncNavViewport, { passive: true });
-    window.addEventListener('resize', syncNavViewport);
-    if (mq.addEventListener) mq.addEventListener('change', syncNavViewport);
-    else if (mq.addListener) mq.addListener(syncNavViewport);
-    syncNavViewport();
-  })();
 
   // Scroll reveal - robust version
   function revealAll() {
