@@ -296,6 +296,23 @@ nav.scrolled{
 .sobre-title-row{display:block;white-space:nowrap}
 .sobre-text{font-family:var(--sans);font-size:15px;font-weight:300;line-height:1.85;color:var(--graphite);margin-bottom:18px}
 .sobre-text strong{font-weight:500;color:var(--black)}
+.sobre-instagram{
+  font-family:var(--sans);
+  font-size:14px;
+  font-weight:300;
+  letter-spacing:0.04em;
+  color:var(--graphite);
+  margin-top:10px;
+}
+.sobre-instagram a{
+  color:var(--black);
+  text-decoration:none;
+  border-bottom:1px solid var(--light-line);
+  padding-bottom:1px;
+  transition:opacity 0.25s;
+}
+.sobre-instagram a:hover{opacity:0.5}
+.sobre-instagram-sep{color:var(--mid);padding:0 0.15em}
 .sobre-right{
   position:relative;
   flex:0 1 min(460px,100%);
@@ -426,11 +443,11 @@ a.portfolio-item{color:inherit;text-decoration:none;-webkit-tap-highlight-color:
 .portfolio-grid .portfolio-item:nth-child(2){grid-column:2 / span 2;grid-row:1;min-height:236px}
 .portfolio-grid .portfolio-item:nth-child(3){grid-column:2;grid-row:2}
 .portfolio-grid .portfolio-item:nth-child(4){grid-column:3;grid-row:2}
-.portfolio-item-bg{position:absolute;inset:0;background:linear-gradient(135deg,#2a2a27,#1a1a18);background-size:cover;background-position:center;background-repeat:no-repeat;display:flex;align-items:center;justify-content:center;transition:transform 0.6s;filter:grayscale(1)}
-.portfolio-item:hover .portfolio-item-bg{transform:scale(1.04)}
+.portfolio-item-bg{position:absolute;inset:0;background:linear-gradient(135deg,#2a2a27,#1a1a18);background-size:cover;background-position:center;background-repeat:no-repeat;display:flex;align-items:center;justify-content:center;transition:transform 0.6s,filter 0.6s;filter:grayscale(1) brightness(1.14) contrast(1.02)}
+.portfolio-item:hover .portfolio-item-bg{transform:scale(1.04);filter:grayscale(1) brightness(1.2) contrast(1.02)}
 .portfolio-item-label{position:absolute;bottom:18px;left:18px;font-family:var(--serif);font-size:16px;font-style:italic;color:rgba(255,255,255,0.92);z-index:2;transition:transform 0.3s;text-shadow:0 1px 12px rgba(0,0,0,0.55)}
 .portfolio-item:hover .portfolio-item-label{transform:translateY(-4px)}
-.portfolio-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 55%);z-index:1}
+.portfolio-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.34) 0%,transparent 58%);z-index:1}
 .portfolio-placeholder{font-family:var(--serif);font-size:56px;color:rgba(255,255,255,0.04);font-style:italic;user-select:none}
 
 /* ═══════════════════════════════
@@ -1188,6 +1205,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     <h2 class="sobre-title reveal reveal-delay-1"><span class="sobre-title-row">Apaixonados pelo digital,</span><span class="sobre-title-row">movidos pelo celestial</span></h2>
     <p class="sobre-text reveal reveal-delay-2">Unimos olhar cinematográfico, sensibilidade humana e direção estratégica para transformar encontros, celebrações e narrativas de marca em experiências visuais que permanecem.</p>
     <p class="sobre-text reveal reveal-delay-2">Atendemos <strong>casamentos</strong>, <strong>eventos</strong>, <strong>marcas</strong> e <strong>empresas</strong> que buscam mais do que cobertura: presença, estética cuidada e entrega que conversa com o seu posicionamento.</p>
+    <p class="sobre-instagram reveal reveal-delay-2"><a href="https://www.instagram.com/carolalbas" target="_blank" rel="noopener noreferrer">@carolalbas</a><span class="sobre-instagram-sep"> &amp; </span><a href="https://www.instagram.com/pehalba" target="_blank" rel="noopener noreferrer">@pehalba</a></p>
   </div>
   <div class="sobre-right reveal reveal-delay-2">
     <div class="sobre-photo-wrap">
