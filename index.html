@@ -1009,15 +1009,18 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
     padding:clamp(48px,10vh,80px) 22px clamp(56px,12vh,96px);
     gap:clamp(40px,8vh,56px);
   }
-  .sobre-pretitle{margin-bottom:clamp(18px,3.5vh,26px)}
+  .sobre-pretitle{
+    font-size:clamp(10px,2.7vw,12px);
+    letter-spacing:0.34em;
+    margin-bottom:clamp(20px,3.8vh,30px);
+  }
   .sobre-title{
-    white-space:nowrap;
-    font-size:clamp(11.5px,3.45vw,20px);
-    line-height:1.18;
+    white-space:normal;
+    font-size:clamp(42px,12vw,64px);
+    line-height:1.06;
     margin-bottom:clamp(28px,5.5vh,42px);
   }
-  .sobre-title .sobre-title-row{display:inline;white-space:nowrap}
-  .sobre-title .sobre-title-row:first-child::after{content:' '}
+  .sobre-title .sobre-title-row{display:block;white-space:normal}
   .sobre-text{font-size:16px;line-height:1.82}
   #servicos{padding:36px 20px}
   .servicos-intro{margin-bottom:28px}
