@@ -120,9 +120,9 @@ nav{
   align-items:center;
   gap:20px;
   padding-top:calc(22px + env(safe-area-inset-top, 0px));
-  padding-right:56px;
+  padding-right:max(56px,env(safe-area-inset-right,0px));
   padding-bottom:22px;
-  padding-left:56px;
+  padding-left:max(56px,env(safe-area-inset-left,0px));
   width:100%;
   max-width:100%;
   box-sizing:border-box;
@@ -141,9 +141,9 @@ nav.scrolled{
   background:rgba(236,234,232,0.96);
   backdrop-filter:blur(14px);
   padding-top:calc(14px + env(safe-area-inset-top, 0px));
-  padding-right:56px;
+  padding-right:max(56px,env(safe-area-inset-right,0px));
   padding-bottom:14px;
-  padding-left:56px;
+  padding-left:max(56px,env(safe-area-inset-left,0px));
   box-shadow:0 1px 0 var(--light-line);
 }
 .nav-logo-img{height:50px;width:auto;display:block}
@@ -571,7 +571,7 @@ a.portfolio-item{color:inherit;text-decoration:none;-webkit-tap-highlight-color:
 .sm-arrow:active{transform:scale(0.96)}
 .sm-arrow:focus-visible{outline:2px solid var(--graphite);outline-offset:2px}
 .sm-arrow:disabled{opacity:0.35;cursor:not-allowed;transform:none}
-.storymaker-phone{width:250px;aspect-ratio:9/19;background:var(--bg-dark);border-radius:32px;margin:0 auto;position:relative;box-shadow:0 32px 64px rgba(0,0,0,0.16);overflow:hidden;border:1px solid rgba(255,255,255,0.07)}
+.storymaker-phone{width:250px;aspect-ratio:9/19;background:var(--bg-dark);border-radius:32px;margin:0 auto;position:relative;box-shadow:0 32px 64px rgba(0,0,0,0.16);overflow:hidden;border:1px solid rgba(255,255,255,0.07);transform:translateZ(0);-webkit-transform:translateZ(0);isolation:isolate}
 .phone-screen{position:absolute;inset:5px;border-radius:26px;background:linear-gradient(160deg,#1a1a18,#2d2d2a);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;overflow:hidden;transition:background 0.45s ease}
 .phone-screen.phone-t-story{background:linear-gradient(165deg,#1a1816,#2a2520)}
 .phone-screen.phone-t-film{background:linear-gradient(165deg,#141820,#1e2830)}
@@ -592,6 +592,9 @@ a.portfolio-item{color:inherit;text-decoration:none;-webkit-tap-highlight-color:
   border-radius:22px;
   overflow:hidden;
   pointer-events:none;
+  background:#1a1a18;
+  transform:translateZ(0);
+  -webkit-transform:translateZ(0);
 }
 .phone-media-gif,
 .phone-media-video{
@@ -614,6 +617,10 @@ a.portfolio-item{color:inherit;text-decoration:none;-webkit-tap-highlight-color:
   object-position:center;
   display:none;
   border-radius:22px;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+  transform:translateZ(0);
+  -webkit-transform:translateZ(0);
 }
 .phone-media-photo.is-visible{display:block}
 .phone-tag{font-family:var(--sans);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:4px}
@@ -877,8 +884,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
 }
 
 @media(max-width:1024px){
-  nav{display:flex;justify-content:space-between;align-items:center;will-change:transform;padding-top:calc(20px + env(safe-area-inset-top, 0px));padding-right:32px;padding-bottom:20px;padding-left:32px}
-  nav.scrolled{padding-top:calc(14px + env(safe-area-inset-top, 0px));padding-right:32px;padding-bottom:14px;padding-left:32px}
+  nav{display:flex;justify-content:space-between;align-items:center;padding-top:calc(20px + env(safe-area-inset-top, 0px));padding-right:max(32px,env(safe-area-inset-right,0px));padding-bottom:20px;padding-left:max(32px,env(safe-area-inset-left,0px));width:100%;max-width:none}
+  nav.scrolled{padding-top:calc(14px + env(safe-area-inset-top, 0px));padding-right:max(32px,env(safe-area-inset-right,0px));padding-bottom:14px;padding-left:max(32px,env(safe-area-inset-left,0px))}
   .nav-links{display:none}
   .nav-cta{display:none}
   .nav-actions{display:flex;align-items:center}
@@ -907,8 +914,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
   footer{padding:40px 32px 26px}.footer-top{grid-template-columns:1fr;gap:32px}.footer-bottom{flex-direction:column;gap:16px;text-align:center}
 }
 @media(max-width:640px){
-  nav{display:flex;justify-content:space-between;align-items:center;padding-top:calc(18px + env(safe-area-inset-top, 0px));padding-right:20px;padding-bottom:18px;padding-left:20px}
-  nav.scrolled{padding-top:calc(12px + env(safe-area-inset-top, 0px));padding-right:20px;padding-bottom:12px;padding-left:20px}
+  nav{display:flex;justify-content:space-between;align-items:center;padding-top:calc(18px + env(safe-area-inset-top, 0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-bottom:18px;padding-left:max(20px,env(safe-area-inset-left,0px));width:100%;max-width:none}
+  nav.scrolled{padding-top:calc(12px + env(safe-area-inset-top, 0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-bottom:12px;padding-left:max(20px,env(safe-area-inset-left,0px))}
   #hero{padding:88px 20px clamp(28px,5vh,44px)}
   .hero-scroll-indicator{margin-top:clamp(22px,4vh,40px)}
   .hero-logo-img{height:clamp(104px,30vw,138px);max-width:82vw}
@@ -1371,7 +1378,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
               <video id="smPhoneMedia" class="phone-media-video" width="400" height="400" muted playsinline webkit-playsinline loop autoplay preload="none" disablepictureinpicture aria-label="Pré-visualização em vídeo do serviço no telemóvel">
                 <source src="Video/story maker.mp4" type="video/mp4" />
               </video>
-              <img id="smPhoneImage" class="phone-media-photo" width="400" height="400" alt="" decoding="async" loading="lazy" aria-hidden="true" />
+              <img id="smPhoneImage" class="phone-media-photo" width="400" height="400" alt="" decoding="async" aria-hidden="true" />
             </div>
             <div class="phone-notch"></div>
             <div class="phone-bars" id="smPhoneBars"><div class="phone-bar active"></div><div class="phone-bar active"></div><div class="phone-bar"></div><div class="phone-bar"></div><div class="phone-bar"></div></div>
@@ -1575,18 +1582,35 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
   window.addEventListener('resize', fixHeroPadding);
   window.addEventListener('load', fixHeroPadding);
 
-  /* Barra fixa: quando a barra de endereço móvel encolhe, o layout viewport desloca-se e aparece faixa acima do nav — alinhar ao visualViewport. */
+  /* iPhone / Chrome móvel: visualViewport desloca-se da barra do browser; transform em fixed costuma falhar na largura — usar top/left/width do visualViewport. */
   (function () {
     var navVv = document.getElementById('mainNav');
     if (!navVv || !window.visualViewport) return;
     var vv = window.visualViewport;
+    var mq = window.matchMedia('(max-width: 1024px)');
     function syncNavViewport() {
-      var o = vv.offsetTop;
-      navVv.style.transform = o > 0.5 ? 'translateY(' + (-o) + 'px)' : '';
+      if (!mq.matches) {
+        navVv.style.top = '';
+        navVv.style.left = '';
+        navVv.style.right = '';
+        navVv.style.width = '';
+        navVv.style.maxWidth = '';
+        return;
+      }
+      var ox = vv.offsetLeft;
+      var oy = vv.offsetTop;
+      navVv.style.top = (-oy) + 'px';
+      navVv.style.left = (-ox) + 'px';
+      navVv.style.right = 'auto';
+      navVv.style.width = vv.width + 'px';
+      navVv.style.maxWidth = 'none';
     }
     vv.addEventListener('resize', syncNavViewport);
     vv.addEventListener('scroll', syncNavViewport);
     window.addEventListener('scroll', syncNavViewport, { passive: true });
+    window.addEventListener('resize', syncNavViewport);
+    if (mq.addEventListener) mq.addEventListener('change', syncNavViewport);
+    else if (mq.addListener) mq.addListener(syncNavViewport);
     syncNavViewport();
   })();
 
@@ -1668,9 +1692,9 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
       var imgUrl = (slide.getAttribute('data-phone-image') || '').trim();
       try { phoneVideo.pause(); } catch (e0) {}
       phoneVideo.classList.add('is-hidden');
-      phoneImage.classList.remove('is-visible');
-      phoneImage.removeAttribute('src');
       if (vidUrl) {
+        phoneImage.classList.remove('is-visible');
+        phoneImage.removeAttribute('src');
         phoneVideo.classList.remove('is-hidden');
         var srcEl = phoneVideo.querySelector('source');
         if (srcEl) {
@@ -1687,9 +1711,19 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
         return;
       }
       if (imgUrl) {
+        var prevSrc = phoneImage.getAttribute('src') || '';
+        if (prevSrc === imgUrl) {
+          phoneImage.classList.add('is-visible');
+          return;
+        }
+        phoneImage.classList.remove('is-visible');
+        phoneImage.removeAttribute('src');
         phoneImage.setAttribute('src', imgUrl);
         phoneImage.classList.add('is-visible');
+        return;
       }
+      phoneImage.classList.remove('is-visible');
+      phoneImage.removeAttribute('src');
     }
 
     function slideW() {
@@ -1716,7 +1750,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
       var vidUrl = (slide.getAttribute('data-phone-video') || '').trim();
       var imgUrl = (slide.getAttribute('data-phone-image') || '').trim();
       var useMedia = !!(vidUrl || imgUrl);
-      screen.className = 'phone-screen ' + (useMedia ? 'has-phone-media ' : '') + cls;
+      var nextCls = 'phone-screen ' + (useMedia ? 'has-phone-media ' : '') + cls;
+      if (screen.className !== nextCls) screen.className = nextCls;
       if (icon) icon.textContent = slide.getAttribute('data-phone-icon') || '🎬';
       if (line1) line1.textContent = slide.getAttribute('data-phone-line1') || '';
       if (line2) line2.textContent = slide.getAttribute('data-phone-line2') || '';
@@ -1778,8 +1813,10 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;o
       else go(idx + 1, true);
     }, { passive: true });
 
+    var resizeLayoutTimer = null;
     window.addEventListener('resize', function () {
-      applyLayout();
+      clearTimeout(resizeLayoutTimer);
+      resizeLayoutTimer = setTimeout(applyLayout, 80);
     });
     window.addEventListener('orientationchange', function () {
       setTimeout(applyLayout, 200);
