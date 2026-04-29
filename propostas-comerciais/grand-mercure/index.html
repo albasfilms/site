@@ -236,6 +236,72 @@
         border-left: 3px solid var(--black);
         font-size: 16px;
       }
+      .bonus-slide {
+        gap: 8px;
+      }
+      .bonus-slide .cards {
+        gap: 8px;
+      }
+      .bonus-slide .card {
+        padding: 7px;
+        gap: 5px;
+      }
+      .bonus-slide .card-photo {
+        aspect-ratio: 28/9;
+      }
+      .bonus-slide .card h3 {
+        font-size: 20px;
+        line-height: 0.98;
+      }
+      .bonus-slide .price {
+        padding: 10px 14px;
+        max-width: 540px;
+      }
+      .bonus-slide .price-value {
+        font-size: clamp(32px, 4.2vw, 44px);
+        margin: 2px 0 4px;
+      }
+      .bonus-slide .price-tag {
+        font-size: 8px;
+      }
+      .bonus-slide .price p,
+      .bonus-slide .note {
+        font-size: 13px;
+        line-height: 1.45;
+      }
+      .bonus-slide .note {
+        padding: 9px 12px;
+        margin-top: 2px;
+      }
+      .final-slide {
+        gap: 10px;
+      }
+      .final-slide .price {
+        padding: 12px 16px;
+        max-width: 640px;
+      }
+      .final-slide .price-value {
+        font-size: clamp(38px, 5.2vw, 56px);
+        margin: 3px 0 5px;
+      }
+      .final-slide .price-tag {
+        font-size: 8px;
+      }
+      .final-slide .price p,
+      .final-slide > p {
+        font-size: 14px;
+        line-height: 1.45;
+      }
+      .final-slide h2 {
+        font-size: clamp(34px, 4.2vw, 48px);
+      }
+      .final-slide .cta-title {
+        font-size: clamp(32px, 4vw, 44px);
+        margin-top: 0;
+      }
+      .final-slide .btn {
+        padding: 11px 18px;
+      }
       .price {
         padding: 20px;
         border: 1px solid var(--line);
@@ -283,13 +349,6 @@
       .btn-ghost {
         border: 1px solid var(--black);
         color: var(--black);
-      }
-      .btn::after {
-        content: " (link pendente)";
-        letter-spacing: 0;
-        text-transform: none;
-        opacity: 0.65;
-        font-size: 12px;
       }
       .nav {
         display: flex;
@@ -406,6 +465,27 @@
         .card h3 {
           font-size: 20px;
         }
+        .bonus-slide .price,
+        .social-slide .price{
+          width:100%;
+          min-height:118px;
+          display:flex;
+          flex-direction:column;
+          justify-content:center;
+        }
+        .bonus-slide .card-photo {
+          aspect-ratio: 16/10;
+        }
+        .bonus-slide .card {
+          padding: 8px;
+        }
+        .bonus-slide .price,
+        .optional-slide .price {
+          min-height: 118px;
+          width: 100%;
+          display: grid;
+          align-content: center;
+        }
         .deck {
           border-left: none;
           border-right: none;
@@ -450,7 +530,7 @@
             </div>
           </section>
 
-          <section class="slide">
+          <section class="slide final-slide">
             <div class="kicker">Plano Principal</div>
             <h2>Produção de Conteúdo + IA</h2>
             <div class="list">
@@ -479,7 +559,7 @@
             </div>
           </section>
 
-          <section class="slide">
+          <section class="slide bonus-slide">
             <div class="kicker">Bônus Exclusivos</div>
             <h2>Bônus exclusivos</h2>
             <div class="cards">
@@ -499,7 +579,7 @@
                     alt="Fotografia profissional de pratos"
                   />
                 </div>
-                <h3>Fotografia profissional de comidas e pratos</h3>
+                <h3>Fotografia gastrônomica</h3>
               </article>
               <article class="card">
                 <div class="card-photo">
@@ -513,12 +593,13 @@
               <article class="card">
                 <div class="card-photo">
                   <img
-                    src="../../images/portfolio-corporativo.webp"
-                    alt="Corporativo"
+                    src="../../imagessite/diti.jpeg"
+                    alt="Fotos institucionais"
+                    style="object-position:center 18%;"
                   />
                 </div>
                 <h3>
-                  Vídeos promocionais personalizados para eventos do hotel
+                  Fotos institucionais
                 </h3>
               </article>
             </div>
@@ -527,13 +608,9 @@
               <div class="price-value">R$ 5.500/mês</div>
               <p>Plano principal de produção de conteúdo.</p>
             </div>
-            <p class="note">
-              Os bônus são pensados para agregar valor e apoiar momentos
-              estratégicos da comunicação do hotel.
-            </p>
           </section>
 
-          <section class="slide">
+          <section class="slide optional-slide">
             <div class="kicker">Opcional</div>
             <h2>Gestão de Social Media</h2>
             <p>
@@ -555,31 +632,27 @@
             </div>
           </section>
 
-          <section class="slide">
+          <section class="slide social-slide">
             <div class="kicker">Pacote Completo</div>
             <h2>Investimento Final</h2>
             <div class="price" style="margin-bottom: 12px">
               <div class="price-tag">Plano principal</div>
               <div class="price-value">R$ 5.500/mês</div>
-              <p>
-                Plano mensal com produção de conteúdo, edição, IA, materiais
-                para TVs internas e bônus exclusivos.
-              </p>
             </div>
             <div class="price">
-              <div class="price-tag">Plano principal + social midia</div>
-              <div class="price-value">R$ 7.990/mês</div>
-              <p>Plano principal + social midia.</p>
+              <div class="price-tag">social midia</div>
+              <div class="price-value">R$ 2.490/mês</div>
             </div>
-            <h2 style="margin-top: 8px">
-              Vamos fortalecer a presença digital do Grand Mercure?
-            </h2>
-            <p>
-              Se fizer sentido para o momento do hotel, avançamos com o
-              cronograma e começamos a produção imediatamente.
-            </p>
+            <h2 class="cta-title">Vamos crescer juntos?</h2>
+
             <div class="buttons">
-              <a class="btn btn-ghost" href="#">Falar no WhatsApp</a>
+              <a
+                class="btn btn-ghost"
+                href="https://wa.me/5541996162793?text=J%C3%A1%20analisei%20a%20proposta"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Falar no WhatsApp</a
+              >
             </div>
           </section>
         </div>
